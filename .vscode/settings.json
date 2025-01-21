@@ -1,0 +1,82 @@
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "eslint.format.enable": true,
+    "json.schemas": [
+        {
+            "editor.formatOnSave": true,
+            "[javascript]": {
+                "editor.defaultFormatter": "esbenp.prettier-vscode"
+            },
+            "[typescript]": {
+                "editor.defaultFormatter": "esbenp.prettier-vscode"
+            }
+        }
+    ],
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "todo-tree.highlights.defaultHighlight": {
+    "icon": "alert",
+    "type": "text-and-comment",
+    "foreground": "black",
+    "background": "white",
+    "opacity": 50,
+    "iconColour": "blue",
+    "gutterIcon": true,
+},
+"todo-tree.highlights.customHighlight": {
+    "TODO": {
+        "icon": "check",
+        "foreground": "#000000",
+        "background": "#FFFFFF",
+        "iconColour": "#FFFFFF",
+    },
+    "NOTE": {
+        "icon": "note",
+        "foreground": "#FFFFFF",
+        "background": "#808080",
+        "iconColour": "#808080",
+    },
+    "COMMENT": {
+        "icon": "note",
+        "foreground": "#FFFFFF",
+        "background": "#808080",
+        "iconColour": "#808080",
+    },
+    "FIXME": {
+        "foreground": "#000000",
+        "background": "#FFFF00",
+        "iconColour": "#FFFF00",
+    },
+    "BUG": {
+        "foreground": "#000000",
+        "background": "#FF0000",
+        "iconColour": "#FF0000",
+    },
+    "[ ]": {
+        "icon": "check",
+        "foreground": "#000000",
+        "background": "#FFFFFF",
+        "iconColour": "#FFFF00",
+    },
+    "[x]": {
+        "icon": "check",
+        "foreground": "#FFFFFF",
+        "background": "#008000",
+        "iconColour": "#008000",
+    }
+},
+"todo-tree.general.tags": [
+    "BUG",
+    "HACK",
+    "FIXME",
+    "TODO",
+    "NOTE",
+    "COMMENT",
+    "[ ]",
+    "[x]"
+],
+"todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS).*(\\n\\s*//\\s{2,}.*)*",
+
+}
