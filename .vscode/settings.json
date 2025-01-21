@@ -15,7 +15,7 @@
     ],
     "[typescriptreact]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
+    },
     "todo-tree.highlights.defaultHighlight": {
     "icon": "alert",
     "type": "text-and-comment",
@@ -28,43 +28,43 @@
 "todo-tree.highlights.customHighlight": {
     "TODO": {
         "icon": "check",
-        "foreground": "black",
-        "background": "white",
-        "iconColour": "white",
+        "foreground": "#000000",
+        "background": "#FFFFFF",
+        "iconColour": "#FFFFFF",
     },
     "NOTE": {
         "icon": "note",
-        "foreground": "white",
-        "background": "gray",
-        "iconColour": "gray",
+        "foreground": "#FFFFFF",
+        "background": "#808080",
+        "iconColour": "#808080",
     },
     "COMMENT": {
         "icon": "note",
-        "foreground": "white",
-        "background": "gray",
-        "iconColour": "gray",
+        "foreground": "#FFFFFF",
+        "background": "#808080",
+        "iconColour": "#808080",
     },
     "FIXME": {
-        "foreground": "black",
-        "background": "yellow",
-        "iconColour": "yellow",
+        "foreground": "#000000",
+        "background": "#FFFF00",
+        "iconColour": "#FFFF00",
     },
     "BUG": {
-        "foreground": "black",
-        "background": "red",
-        "iconColour": "red",
+        "foreground": "#000000",
+        "background": "#FF0000",
+        "iconColour": "#FF0000",
     },
     "[ ]": {
         "icon": "check",
-        "foreground": "black",
-        "background": "white",
-        "iconColour": "yellow",
+        "foreground": "#000000",
+        "background": "#FFFFFF",
+        "iconColour": "#FFFF00",
     },
     "[x]": {
         "icon": "check",
-        "foreground": "white",
-        "background": "green",
-        "iconColour": "green",
+        "foreground": "#FFFFFF",
+        "background": "#008000",
+        "iconColour": "#008000",
     }
 },
 "todo-tree.general.tags": [
