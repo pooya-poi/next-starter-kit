@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "update:next": "pnpm dlx @next/codemod@latest"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
