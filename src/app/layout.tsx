@@ -40,7 +40,7 @@ export default function RootLayout({
       // className={cn('light',`${geistSans.variable} ${geistMono.variable} antialiased`)}
       className={cn("light")}
     >
-      <body>{children}</body>
+      <body className='bg-background'>{children}</body>
     </html>
   );
 }
