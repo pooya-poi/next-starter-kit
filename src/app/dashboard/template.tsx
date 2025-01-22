@@ -1,49 +1,59 @@
+'use client';
 import Sidebar from '@/components/sidebar';
 import ToggleScreen from '@/components/toggle-screen';
 import ToggleTheme from '@/components/toggle-theme';
 import type { ReadonlyChildrenFC } from '@/types/components';
+import { ChevronLeftIcon } from 'lucide-react';
+import { useState } from 'react';
+import * as m from 'motion/react-m';
 
-const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => (
-  <>
+const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
+  const [isExpanded, setIsExpanded] = useState<boolean>(true);
+  return (
+    <>
+      <div dir="rtl" className="m-auto flex max-w-[1920px] flex-col gap-4 p-5">
+        <div className="flex gap-4">
+          <m.aside
+            initial={{ width: '350px' }}
+            animate={{ width: isExpanded ? '350px' : '150px' }}
+            transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+            className="relative hidden h-[80vh] w-72 rounded-lg bg-white md:inline-block"
+          >
+            sidebar
+            <m.button
+              initial={{ rotate: isExpanded ? '180deg' : '0deg' }}
+              animate={{ rotate: isExpanded ? '180deg' : '0deg' }}
+              transition={{ type: 'Tween', stiffness: 300, damping: 50 }}
+              onClick={() => setIsExpanded(prev => !prev)}
+              className="absolute -left-3 top-20 rounded-full border-4 border-background bg-white"
+            >
+              <ChevronLeftIcon size={28} />
+            </m.button>
+          </m.aside>
+          <div className="flex w-full flex-col ">
+            <header className="flex h-16 items-center rounded-lg bg-white px-4">
+              <ToggleTheme
+                iconSize={10}
+                className="md:flex"
+                size={'lg'}
+                variant={'default'}
+                rounded={'twoxl'}
+              />
 
-    <div className="grid min-h-screen grid-cols-[1fr,auto] grid-rows-[auto,1fr,auto] gap-4 p-5">
-      <header className="bg-gray-800 p-4 text-white">
-        <h1 className="text-xl">Dashboard Header</h1>
-        <ToggleTheme/>
-      </header>
-
-      <aside className="row-span-3 w-72 bg-gray-100 p-4">
-        <nav>
-          <ul className="space-y-2">
-            <li>
-              <a href="#" className="text-gray-700 hover:text-blue-600">
-                Link 1
-              </a>
-            </li>
-            <li>
-              <a href="#" className="text-gray-700 hover:text-blue-600">
-                Link 2
-              </a>
-            </li>
-            <li>
-              <a href="#" className="text-gray-700 hover:text-blue-600">
-                Link 3
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </aside>
-
-      <main className="bg-white p-4 shadow">
-        <h2 className="text-lg font-semibold">Main Content Area</h2>
-        <p>This is where the main content goes.</p>
-      </main>
-
-      <footer className="col-span-2 bg-gray-800 p-4 text-white">
-        <p className="text-center">Dashboard Footer &copy; 2025</p>
-      </footer>
-    </div>
-  </>
-);
+              <ToggleScreen
+                className="md:flex"
+                size={'lg'}
+                variant={'default'}
+                rounded={'twoxl'}
+              />
+            </header>
+            <main className="mt-16 h-[80vh] rounded-lg bg-white">{children}</main>
+          </div>
+        </div>
+        <footer className="h-10 rounded-lg bg-white">footer 2025</footer>
+      </div>
+    </>
+  );
+};
 
 export default DashboardTemplate;
