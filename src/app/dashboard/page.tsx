@@ -1,6 +1,6 @@
 const Page:React.FC = () => (
 
- <div className="">Page</div>
+ <div>Page</div>
 
 )
 
