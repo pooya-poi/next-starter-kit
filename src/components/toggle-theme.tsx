@@ -38,6 +38,7 @@ const toggleThemeVariants = cva(
  */
 interface ToggleThemeProps extends VariantProps<typeof toggleThemeVariants> {
   className?: string;
+  iconSize?:number;
 }
 
 /**
@@ -50,6 +51,7 @@ const ToggleTheme = ({
   className,
   variant,
   size,
+  iconSize=16,
   rounded,
 }: ToggleThemeProps) => {
   const { theme, setTheme } = useTheme();
@@ -63,13 +65,13 @@ const ToggleTheme = ({
       // aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
     >
       <Moon
-        size={16}
+        size={iconSize}
         strokeWidth={2}
         className="group-data-[state=on]:text-white-900/80 group-hover:text-slate-900 shrink-0 scale-0 opacity-0 transition-all group-data-[state=on]:scale-100 group-data-[state=on]:opacity-100"
         aria-hidden="true"
       />
       <Sun
-        size={16}
+        size={iconSize}
         strokeWidth={2}
         className="group-hover:dark:text-slate-900 dark:text-white drop-shadow-lg  group-hover:text-slate-900 absolute shrink-0 scale-100 opacity-100 transition-all group-data-[state=on]:scale-0 group-data-[state=on]:opacity-0"
         aria-hidden="true"
