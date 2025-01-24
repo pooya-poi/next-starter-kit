@@ -2,7 +2,7 @@
 import ToggleScreen from '@/components/toggle-screen';
 import ToggleTheme from '@/components/toggle-theme';
 import type { ReadonlyChildrenFC } from '@/types/components';
-import { Activity, AirVent, AlarmCheck, ChevronLeftIcon } from 'lucide-react';
+import { ChevronLeftIcon } from 'lucide-react';
 import { useState } from 'react';
 import * as m from 'motion/react-m';
 import Image from 'next/image';
@@ -75,19 +75,6 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
             </header>
             <main className="mt-16 h-[80vh] rounded-lg bg-white">
               {children}
-
-              {/* <span className='flex'>
-                <Icons.Activity /> Activity
-              </span> */}
-
-              <div className="grid grid-cols-2 gap-4">
-                {Object.entries(Icons).map(([iconName, IconComponent]) => (
-                  <span key={iconName} className="flex items-center gap-2">
-                    <IconComponent className="h-6 w-6" />
-                    {iconName}
-                  </span>
-                ))}
-              </div>
             </main>
           </div>
         </div>
