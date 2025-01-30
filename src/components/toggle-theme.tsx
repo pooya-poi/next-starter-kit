@@ -20,7 +20,7 @@ const toggleThemeVariants = cva(
         sm: "rounded-sm",
         md: "rounded-md",
         lg: "rounded-lg",
-        twoxl: "rounded-2xl",
+        "2xl": "rounded-2xl",
         full: "rounded-full",
       },
       size: {
