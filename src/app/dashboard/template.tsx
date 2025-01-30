@@ -10,7 +10,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import * as Icons from '@/components/animated-icon/index';
 import { useMobileSidebar } from '@/hooks/useMobileSidebar';
-import ToggleSidebar from '@/components/ui/toggle-sidebar';
+import ToggleSidebar from '@/components/toggle-sidebar';
 
 const sidebarItems = [
   { id: 1, name: 'خانه', icon: <Icons.Home /> },
