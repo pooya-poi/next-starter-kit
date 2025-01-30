@@ -32,23 +32,23 @@ const svgVariants: Variants = {
   },
 };
 
-const LanguagesIcon = () => {
+const LanguagesIcon = ({className}:{className?:string}) => {
   const svgControls = useAnimation();
   const pathControls = useAnimation();
 
-  const onAnimationStart = () => {
+  const onAnimationStart = ({className}:{className?:string}) => {
     svgControls.start('animate');
     pathControls.start('animate');
   };
 
-  const onAnimationEnd = () => {
+  const onAnimationEnd = ({className}:{className?:string}) => {
     svgControls.start('initial');
     pathControls.start('initial');
   };
 
   return (
     <div
-      className="flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200 hover:bg-accent"
+      className={`flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200  ${className}`}
       onMouseEnter={onAnimationStart}
       onMouseLeave={onAnimationEnd}
     >

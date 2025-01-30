@@ -48,7 +48,7 @@ const tailVariants: Variants = {
   },
 };
 
-const GithubIcon = () => {
+const GithubIcon = ({className}:{className?:string}) => {
   const bodyControls = useAnimation();
   const tailControls = useAnimation();
 
@@ -58,14 +58,14 @@ const GithubIcon = () => {
     tailControls.start('wag');
   };
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = ({className}:{className?:string}) => {
     bodyControls.start('normal');
     tailControls.start('normal');
   };
 
   return (
     <div
-      className="flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200 hover:bg-accent"
+      className={`flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200  ${className}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

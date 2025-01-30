@@ -5,12 +5,12 @@ import * as m from 'motion/react-m';
 
 const customEasing = cubicBezier(0.25, 0.1, 0.25, 1);
 
-const UndoIcon = () => {
+const UndoIcon = ({className}:{className?:string}) => {
   const controls = useAnimation();
 
   return (
     <div
-      className="flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200 hover:bg-accent"
+      className={`flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200  ${className}`}
       onMouseEnter={() => controls.start('animate')}
       onMouseLeave={() => controls.start('normal')}
     >

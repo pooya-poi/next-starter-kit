@@ -14,7 +14,7 @@ const lineVariants: Variants = {
   hidden: { pathLength: 0, opacity: 0 },
 };
 
-const ScanTextIcon = () => {
+const ScanTextIcon = ({className}:{className?:string}) => {
   const controls = useAnimation();
 
   const handleHoverStart = useCallback(async () => {
@@ -36,7 +36,7 @@ const ScanTextIcon = () => {
 
   return (
     <div
-      className="flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200 hover:bg-accent"
+      className={`flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200  ${className}`}
       onMouseEnter={handleHoverStart}
       onMouseLeave={handleHoverEnd}
     >

@@ -36,13 +36,13 @@ const starVariants: Variants = {
   }),
 };
 
-const SparklesIcon = () => {
+const SparklesIcon = ({className}:{className?:string}) => {
   const starControls = useAnimation();
   const sparkleControls = useAnimation();
 
   return (
     <div
-      className="flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200 hover:bg-accent"
+      className={`flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200  ${className}`}
       onMouseEnter={() => {
         sparkleControls.start('hover');
         starControls.start('blink', { delay: 1 });

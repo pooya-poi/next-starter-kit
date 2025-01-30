@@ -20,7 +20,7 @@ const dotVariants: Variants = {
   default: { opacity: 1 },
 };
 
-const ChartScatterIcon = () => {
+const ChartScatterIcon = ({className}:{className?:string}) => {
   const controls = useAnimation();
 
   const handleHoverStart = async () => {
@@ -34,7 +34,7 @@ const ChartScatterIcon = () => {
 
   return (
     <div
-      className="flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200 hover:bg-accent"
+      className={`flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200  ${className}`}
       onMouseEnter={handleHoverStart}
       onMouseLeave={handleHoverEnd}
     >

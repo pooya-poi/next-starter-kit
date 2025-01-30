@@ -69,18 +69,18 @@ const circleVariants: Variants = {
   },
 };
 
-const LinkedinIcon = () => {
+const LinkedinIcon = ({className}:{className?:string}) => {
   const pathControls = useAnimation();
   const rectControls = useAnimation();
   const circleControls = useAnimation();
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = ({className}:{className?:string}) => {
     pathControls.start('animate');
     rectControls.start('animate');
     circleControls.start('animate');
   };
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = ({className}:{className?:string}) => {
     pathControls.start('normal');
     rectControls.start('normal');
     circleControls.start('normal');
@@ -88,7 +88,7 @@ const LinkedinIcon = () => {
 
   return (
     <div
-      className="flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200 hover:bg-accent"
+      className={`flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200  ${className}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

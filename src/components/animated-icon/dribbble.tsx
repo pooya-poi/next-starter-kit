@@ -47,20 +47,20 @@ const pathVariants: Variants = {
   },
 };
 
-const DribbbleIcon = () => {
+const DribbbleIcon = ({className}:{className?:string}) => {
   const circleControls = useAnimation();
   const path1Controls = useAnimation();
   const path2Controls = useAnimation();
   const path3Controls = useAnimation();
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = ({className}:{className?:string}) => {
     circleControls.start('animate');
     path1Controls.start('animate');
     path2Controls.start('animate');
     path3Controls.start('animate');
   };
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = ({className}:{className?:string}) => {
     circleControls.start('normal');
     path1Controls.start('normal');
     path2Controls.start('normal');
@@ -69,7 +69,7 @@ const DribbbleIcon = () => {
 
   return (
     <div
-      className="flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200 hover:bg-accent"
+      className={`flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200  ${className}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

@@ -10,11 +10,11 @@ const defaultTransition: Transition = {
   mass: 1,
 };
 
-const GaugeIcon = () => {
+const GaugeIcon = ({className}:{className?:string}) => {
   const controls = useAnimation();
   return (
     <div
-      className="flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200 hover:bg-accent"
+      className={`flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200  ${className}`}
       onMouseEnter={() => controls.start('animate')}
       onMouseLeave={() => controls.start('normal')}
     >

@@ -3,7 +3,7 @@
 import { useAnimation } from 'motion/react';
 import * as m from 'motion/react-m';
 
-const WifiIcon = () => {
+const WifiIcon = ({className}:{className?:string}) => {
   const controls = useAnimation();
 
   const wifiLevels = [
@@ -20,7 +20,7 @@ const WifiIcon = () => {
 
   return (
     <div
-      className="flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200 hover:bg-accent"
+      className={`flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200  ${className}`}
       onMouseEnter={handleHover}
     >
       <svg

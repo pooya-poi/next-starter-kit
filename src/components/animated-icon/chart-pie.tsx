@@ -8,12 +8,12 @@ const pathVariants: Variants = {
   animate: { translateX: 1.1, translateY: -1.1 },
 };
 
-const ChartPieIcon = () => {
+const ChartPieIcon = ({className}:{className?:string}) => {
   const controls = useAnimation();
 
   return (
     <div
-      className="flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200 hover:bg-accent"
+      className={`flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200  ${className}`}
       onMouseEnter={() => controls.start('animate')}
       onMouseLeave={() => controls.start('normal')}
     >

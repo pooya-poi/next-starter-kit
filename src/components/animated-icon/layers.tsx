@@ -11,7 +11,7 @@ const defaultTransition: Transition = {
   mass: 1,
 };
 
-const LayersIcon = () => {
+const LayersIcon = ({className}:{className?:string}) => {
   const controls = useAnimation();
 
   const handleMouseEnter = async () => {
@@ -19,7 +19,7 @@ const LayersIcon = () => {
     await controls.start('secondState');
   };
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = ({className}:{className?:string}) => {
     controls.start('normal');
   };
 
@@ -29,7 +29,7 @@ const LayersIcon = () => {
 
   return (
     <div
-      className="flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200 hover:bg-accent"
+      className={`flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200  ${className}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

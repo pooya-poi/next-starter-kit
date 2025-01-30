@@ -30,13 +30,13 @@ const lineVariants: Variants = {
   }),
 };
 
-const CursorClickIcon = () => {
+const CursorClickIcon = ({className}:{className?:string}) => {
   const clickControls = useAnimation();
   const cursorControls = useAnimation();
 
   return (
     <div
-      className="flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200 hover:bg-accent"
+      className={`flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200  ${className}`}
       onMouseEnter={() => {
         cursorControls.start('hover');
         clickControls.start('spread', { delay: 1.3 });
