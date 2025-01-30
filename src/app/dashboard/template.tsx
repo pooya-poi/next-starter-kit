@@ -1,14 +1,16 @@
 'use client';
 import ToggleScreen from '@/components/toggle-screen';
 import ToggleTheme from '@/components/toggle-theme';
+import MobileSidebar from '@/components/MobileSidebar';
 import type { ReadonlyChildrenFC } from '@/types/components';
-import { Activity, AirVent, AlarmCheck, ChevronLeftIcon } from 'lucide-react';
+import { ChevronLeftIcon } from 'lucide-react';
 import { useState } from 'react';
 import * as m from 'motion/react-m';
 import Image from 'next/image';
 import Link from 'next/link';
-// import { HomeIcon, SettingsGearIcon } from '@/components/animated-icon/icon';
 import * as Icons from '@/components/animated-icon/index';
+import { useMobileSidebar } from '@/hooks/useMobileSidebar';
+import ToggleSidebar from '@/components/ui/toggle-sidebar';
 
 const sidebarItems = [
   { id: 1, name: 'خانه', icon: <Icons.Home /> },
@@ -19,10 +21,13 @@ const sidebarItems = [
 
 const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(true);
+  const { isOpen, openSidebar, closeSidebar } = useMobileSidebar();
+
   return (
     <>
       <div dir="rtl" className="m-auto flex max-w-[1920px] flex-col gap-4 p-5">
         <div className="flex gap-4">
+          {/* Desktop sidebar */}
           <m.aside
             initial={{ width: '350px' }}
             animate={{ width: isExpanded ? '350px' : '150px' }}
@@ -45,7 +50,6 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
               ))}
             </div>
             <div className="bg-cyan-300">cta</div>
-
             <m.button
               initial={{ rotate: isExpanded ? '180deg' : '0deg' }}
               animate={{ rotate: isExpanded ? '180deg' : '0deg' }}
@@ -56,42 +60,39 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
               <ChevronLeftIcon size={28} />
             </m.button>
           </m.aside>
+
+          {/* Mobile Sidebar */}
+          <MobileSidebar isOpen={isOpen} closeSidebar={closeSidebar} />
+
           <div className="flex w-full flex-col">
             <header className="flex h-16 items-center rounded-lg bg-white px-4">
-              <ToggleTheme
-                iconSize={10}
-                className="md:flex"
-                size={'lg'}
-                variant={'default'}
-                rounded={'twoxl'}
-              />
-
-              <ToggleScreen
-                className="md:flex"
-                size={'lg'}
-                variant={'default'}
-                rounded={'twoxl'}
-              />
+              <div className="flex gap-x-2">
+                <ToggleSidebar
+                  openSidebar={openSidebar}
+                  size={'lg'}
+                  rounded={'2xl'}
+                  variant={'default'}
+                />
+                <ToggleTheme
+                  iconSize={10}
+                  className="md:flex"
+                  size={'lg'}
+                  variant={'default'}
+                  rounded={'2xl'}
+                />
+                <ToggleScreen
+                  className="md:flex"
+                  size={'lg'}
+                  variant={'default'}
+                  rounded={'twoxl'}
+                />
+              </div>
             </header>
             <main className="mt-16 h-[80vh] rounded-lg bg-white">
               {children}
-
-              {/* <span className='flex'>
-                <Icons.Activity /> Activity
-              </span> */}
-
-              <div className="grid grid-cols-2 gap-4">
-                {Object.entries(Icons).map(([iconName, IconComponent]) => (
-                  <span key={iconName} className="flex items-center gap-2">
-                    <IconComponent className="h-6 w-6" />
-                    {iconName}
-                  </span>
-                ))}
-              </div>
             </main>
           </div>
         </div>
-        {/* <footer className="h-10 rounded-lg bg-white">footer 2025</footer> */}
       </div>
     </>
   );
