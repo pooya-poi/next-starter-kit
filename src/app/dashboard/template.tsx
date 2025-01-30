@@ -13,10 +13,21 @@ import { useMobileSidebar } from '@/hooks/useMobileSidebar';
 import ToggleSidebar from '@/components/toggle-sidebar';
 
 const sidebarItems = [
-  { id: 1, name: 'خانه', icon: <Icons.Home /> },
-  { id: 2, name: 'تنظیمات', icon: <Icons.Airplane /> },
-  { id: 3, name: 'پروفایل', icon: '' },
-  { id: 4, name: 'درباره ما', icon: '' },
+  { id: 1, name: 'داشبورد', icon: <Icons.Home /> },
+  { id: 2, name: 'محصولات', icon: <Icons.Airplane className='hover:bg-yellow-400'/> },
+  { id: 3, name: 'دسته‌بندی', icon: <Icons.Cart className="hover:bg-red-400"/> },
+  { id: 4, name: 'موجودی', icon: '' },
+  { id: 5, name: 'سفارشات', icon: '' },
+  { id: 6, name: 'خریدها', icon: '' },
+  { id: 7, name: 'ویژگی‌ها', icon: '' },
+  { id: 8, name: 'فاکتورها', icon: '' },
+  { id: 9, name: 'تنظیمات', icon: '' },
+  { id: 10, name: 'پروفایل', icon: '' },
+  { id: 11, name: 'نقش‌ها', icon: '' },
+  { id: 12, name: 'دسترسی‌ها', icon: '' },
+  { id: 13, name: 'مشتریان', icon: '' },
+  { id: 14, name: 'فروشندگان', icon: '' },
+  { id: 15, name: 'کوپن‌ها', icon: '' },
 ];
 
 const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
@@ -29,23 +40,23 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
         <div className="flex gap-4">
           {/* Desktop sidebar */}
           <m.aside
-            initial={{ width: '350px' }}
-            animate={{ width: isExpanded ? '350px' : '150px' }}
+            initial={{ width: '300px' }}
+            animate={{ width: isExpanded ? '300px' : '100px' }}
             transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-            className="relative hidden h-[80vh] w-72 justify-between gap-y-20 rounded-lg bg-white px-5 py-5 md:flex md:flex-col"
+            className="relative hidden h-[90vh] w-72 justify-between gap-y-20 rounded-lg bg-white px-5 py-5 md:flex md:flex-col"
           >
             <div className="self-center">
               <Image width={100} height={50} alt="logo" src={'next.svg'} />
             </div>
-            <div className="flex h-3/4 flex-col gap-y-8 bg-cyan-300">
+            <div className="flex h-3/4 flex-col gap-y-8 overflow-y-auto">
               {sidebarItems.map(item => (
                 <Link
                   href="#"
                   key={item.id}
-                  className="flex items-center rounded-md bg-slate-400 px-2 py-2"
+                  className="flex items-center rounded-md bg-slate-800 px-2 text-white"
                 >
                   {item.icon}
-                  {item.name}
+                  {isExpanded && item.name}
                 </Link>
               ))}
             </div>
@@ -88,9 +99,19 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
                 />
               </div>
             </header>
-            <main className="mt-16 h-[80vh] rounded-lg bg-white">
-              {children}
-            </main>
+            <main className="mt-16 rounded-lg bg-white p-6">
+              {/* {children} */}
+
+              <div className="grid grid-cols-3 gap-4">
+                {Object.entries(Icons).map(([iconName, IconComponent]) => (
+                  <span key={iconName} className="flex items-center gap-2">
+                    {/* <IconComponent className='hover:bg-yellow-300' /> */}
+                    <IconComponent className='asd'/>
+                    {iconName}
+                  </span>
+                ))}
+              </div>
+              </main>
           </div>
         </div>
       </div>
