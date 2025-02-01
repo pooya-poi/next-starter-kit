@@ -1,16 +1,23 @@
 import type { Metadata, Viewport } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Roboto, Vazirmatn } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const roboto = Roboto({
   subsets: ['latin'],
+  variable: '--font-roboto',
+  weight: ['100', '300', '400', '500', '700', '900'],
+  display: 'auto',
+  style: 'normal',
+  fallback: ['vazir'],
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+const vazir = Vazirmatn({
+  subsets: ['arabic'],
+  variable: '--font-vazir',
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  display: 'auto',
+  // fallback:['Roboto']
 });
 
 export const metadata: Metadata = {
@@ -38,9 +45,12 @@ export default function RootLayout({
       lang="fa-IR"
       suppressHydrationWarning
       // className={cn('light',`${geistSans.variable} ${geistMono.variable} antialiased`)}
-      className={cn("light")}
+      className={cn('light')}
     >
-      <body className='bg-background'>{children}</body>
+      <body className={cn('bg-background', vazir.className, roboto.className)}>
+        {children}
+      </body>
+      {/* <body className={cn('bg-background', vazir.className)}>{children}</body> */}
     </html>
   );
 }

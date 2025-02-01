@@ -136,6 +136,7 @@ export { SquareStackIcon as SquareStack } from './square-stack';
 export { StethoscopeIcon as Stethoscope } from './stethoscope';
 export { SunIcon as Sun } from './sun';
 export { SyringeIcon as Syringe } from './syringe';
+export { SquareCheckBigIcon as SquareCheckBig } from './square-check-big';
 export { TelescopeIcon as Telescope } from './telescope';
 export { TerminalIcon as Terminal } from './terminal';
 export { TimerIcon as Timer } from './timer';

@@ -3,19 +3,32 @@ import ToggleScreen from '@/components/toggle-screen';
 import ToggleTheme from '@/components/toggle-theme';
 import MobileSidebar from '@/components/MobileSidebar';
 import type { ReadonlyChildrenFC } from '@/types/components';
-import { ChevronLeftIcon } from 'lucide-react';
-import { useState } from 'react';
+import { Bell, ChevronLeftIcon, MessageSquareMore, Search } from 'lucide-react';
+import { useEffect, useState, useId } from 'react';
 import * as m from 'motion/react-m';
 import Image from 'next/image';
 import Link from 'next/link';
 import * as Icons from '@/components/animated-icon/index';
+
 import { useMobileSidebar } from '@/hooks/useMobileSidebar';
 import ToggleSidebar from '@/components/toggle-sidebar';
 
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+
 const sidebarItems = [
   { id: 1, name: 'داشبورد', icon: <Icons.Home /> },
-  { id: 2, name: 'محصولات', icon: <Icons.Airplane className='hover:bg-yellow-400'/> },
-  { id: 3, name: 'دسته‌بندی', icon: <Icons.Cart className="hover:bg-red-400"/> },
+  {
+    id: 2,
+    name: 'محصولات',
+    icon: <Icons.Airplane className="hover:bg-yellow-400" />,
+  },
+  {
+    id: 3,
+    name: 'دسته‌بندی',
+    icon: <Icons.Cart className="hover:bg-red-400" />,
+  },
   { id: 4, name: 'موجودی', icon: '' },
   { id: 5, name: 'سفارشات', icon: '' },
   { id: 6, name: 'خریدها', icon: '' },
@@ -33,6 +46,14 @@ const sidebarItems = [
 const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(true);
   const { isOpen, openSidebar, closeSidebar } = useMobileSidebar();
+  const [offset, setOffset] = useState(0);
+  const id = useId();
+  useEffect(() => {
+    window.onscroll = () => {
+      setOffset(window.scrollY);
+    };
+  }, []);
+  console.log('offset', offset);
 
   return (
     <>
@@ -43,7 +64,7 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
             initial={{ width: '300px' }}
             animate={{ width: isExpanded ? '300px' : '100px' }}
             transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-            className="relative hidden h-[90vh] w-72 justify-between gap-y-20 rounded-lg bg-white px-5 py-5 md:flex md:flex-col"
+            className="sticky top-5 hidden h-[90vh] w-72 justify-between gap-y-20 rounded-lg bg-white px-5 py-5 md:flex md:flex-col"
           >
             <div className="self-center">
               <Image width={100} height={50} alt="logo" src={'next.svg'} />
@@ -76,42 +97,90 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
           <MobileSidebar isOpen={isOpen} closeSidebar={closeSidebar} />
 
           <div className="flex w-full flex-col">
-            <header className="flex h-16 items-center rounded-lg bg-white px-4">
-              <div className="flex gap-x-2">
+            <header
+              onScroll={() => console.log('header is scrolling')}
+              className="sticky top-5 flex h-16 items-center justify-between rounded-lg bg-white/70 px-4 backdrop-blur-sm"
+            >
+              {/* rightside */}
+              <div>
+                {/* search */}
+                <div className="relative">
+                  <Input
+                    id={id}
+                    className="peer pr-8"
+                    placeholder="جستجو"
+                    type="search"
+                  />
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center justify-center pe-3 pr-3 text-muted-foreground/80 peer-disabled:opacity-50">
+                    <Search size={16} strokeWidth={2} aria-hidden="true" />
+                  </div>
+                </div>
+              </div>
+              {/* leftside */}
+              <div className="flex items-center">
+                {/* toggles */}
+                <div className="flex">
+                  <ToggleTheme
+                    iconSize={10}
+                    className="md:flex"
+                    size={'lg'}
+                    variant={'default'}
+                    rounded={'2xl'}
+                  />
+                  <ToggleScreen
+                    className="md:flex"
+                    size={'lg'}
+                    variant={'default'}
+                    rounded={'twoxl'}
+                  />
+                </div>
+                {/* notifs */}
+                <div className="flex">
+                  <Bell />
+                  <MessageSquareMore />
+                </div>
+                {/* avatar */}
+                <Avatar>
+                  <AvatarImage
+                    src="https://avatar.iran.liara.run/public/24"
+                    alt="Kelly King"
+                  />
+                  <AvatarFallback>KK</AvatarFallback>
+                </Avatar>
+              </div>
+
+              
+                
                 <ToggleSidebar
                   openSidebar={openSidebar}
                   size={'lg'}
                   rounded={'2xl'}
                   variant={'default'}
                 />
-                <ToggleTheme
-                  iconSize={10}
-                  className="md:flex"
-                  size={'lg'}
-                  variant={'default'}
-                  rounded={'2xl'}
-                />
-                <ToggleScreen
-                  className="md:flex"
-                  size={'lg'}
-                  variant={'default'}
-                  rounded={'twoxl'}
-                />
-              </div>
+               
+           
             </header>
-            <main className="mt-16 rounded-lg bg-white p-6">
+            {/* BreadCrumb */}
+            <div className="my-5 px-5 font-extrabold">
+              خانه/ داشبورد / ....../ بریدکرامب
+            </div>
+            <main className="rounded-lg bg-white p-6">
               {/* {children} */}
 
-              <div className="grid grid-cols-3 gap-4">
+              {/* <div className="grid grid-cols-3 gap-4">
                 {Object.entries(Icons).map(([iconName, IconComponent]) => (
-                  <span key={iconName} className="flex items-center gap-2">
-                    {/* <IconComponent className='hover:bg-yellow-300' /> */}
-                    <IconComponent className='asd'/>
+                  <span
+                    key={iconName}
+                    className="flex items-center gap-2 text-black"
+                  >
+                     <IconComponent className='hover:bg-yellow-300' /> 
+                    <IconComponent />
                     {iconName}
                   </span>
                 ))}
-              </div>
-              </main>
+              </div> */}
+              <Icons.SquareCheckBig/>
+            </main>
           </div>
         </div>
       </div>
