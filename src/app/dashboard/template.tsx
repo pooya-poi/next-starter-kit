@@ -16,6 +16,7 @@ import ToggleSidebar from '@/components/toggle-sidebar';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Badge } from '@/components/ui/badge';
 
 const sidebarItems = [
   { id: 1, name: 'داشبورد', icon: <Icons.Home /> },
@@ -57,7 +58,10 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
 
   return (
     <>
-      <div dir="rtl" className="m-auto flex max-w-[1920px] flex-col gap-4 p-5">
+      <div
+        dir="rtl"
+        className="m-auto flex max-w-[1920px] flex-col gap-4 p-2 md:p-5"
+      >
         <div className="flex gap-4">
           {/* Desktop sidebar */}
           <m.aside
@@ -99,7 +103,7 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
           <div className="flex w-full flex-col">
             <header
               onScroll={() => console.log('header is scrolling')}
-              className="sticky top-1 flex h-16 items-center justify-between rounded-lg bg-white/70 dark:bg-slate-800/80 px-4 backdrop-blur-sm"
+              className="sticky top-1 flex h-16 items-center justify-between rounded-lg bg-white/70 px-4 backdrop-blur-sm dark:bg-slate-800/80"
             >
               {/* rightside */}
               <div>
@@ -119,7 +123,7 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
               {/* leftside */}
               <div className="flex items-center gap-x-10">
                 {/* toggles */}
-                <div className="flex gap-x-4 flex-row-reverse">
+                <div className="flex flex-row-reverse gap-x-4">
                   <ToggleTheme
                     iconSize={10}
                     className="md:flex"
@@ -136,11 +140,14 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
                 </div>
                 {/* notifs */}
                 <div className="flex gap-x-4">
-                  <button className='bg-background p-1 rounded-2xl'>
-                    <Icons.MessageCircleMore className='size-9' />
+                  <button className="rounded-2xl bg-background p-1">
+                    <Icons.MessageCircleMore className="size-9" />
                   </button>
-                  <button className='bg-background p-1 rounded-2xl'>
-                    <Icons.Bell className='size-9'/>
+                  <button className="relative rounded-2xl bg-background p-1">
+                    <Icons.Bell className="size-9" />
+                    <Badge className="absolute -top-2 left-full flex  max-w-8 px-2 -translate-x-6 items-center rounded-full border-background">
+                      55
+                    </Badge>
                   </button>
                 </div>
                 {/* avatar */}
@@ -153,16 +160,12 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
                 </Avatar>
               </div>
 
-              
-                
-                <ToggleSidebar
-                  openSidebar={openSidebar}
-                  size={'lg'}
-                  rounded={'2xl'}
-                  variant={'default'}
-                />
-               
-           
+              <ToggleSidebar
+                openSidebar={openSidebar}
+                size={'lg'}
+                rounded={'2xl'}
+                variant={'default'}
+              />
             </header>
             {/* BreadCrumb */}
             <div className="my-5 px-5 font-extrabold">
@@ -170,17 +173,17 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
             </div>
             <main className="rounded-lg bg-white p-6">
               {/* {children} */}
-            <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 gap-4">
                 {Object.entries(Icons).map(([iconName, IconComponent]) => (
                   <span
                     key={iconName}
                     className="flex items-center gap-2 text-black"
                   >
-                     <IconComponent className='hover:bg-yellow-300' /> 
+                    <IconComponent className="hover:bg-yellow-300" />
                     {iconName}
                   </span>
                 ))}
-              </div> 
+              </div>
               {/* <Icons.SquareCheckBig/> */}
             </main>
           </div>
