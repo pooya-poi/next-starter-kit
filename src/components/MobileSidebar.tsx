@@ -25,7 +25,7 @@ const MobileSidebar = ({ isOpen, closeSidebar }: MobileSidebarProps) => {
 
       {/* Sidebar */}
       <aside
-        className={`fixed right-0 top-0 z-30 h-full w-80 bg-red-200 transition-transform duration-300 ease-in-out ${
+        className={`fixed right-0 top-0 z-30 h-full w-80 rounded-bl-3xl rounded-tl-3xl bg-red-200 transition-transform duration-300 ease-in-out ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         } md:hidden`}
       >
