@@ -99,7 +99,7 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
           <div className="flex w-full flex-col">
             <header
               onScroll={() => console.log('header is scrolling')}
-              className="sticky top-5 flex h-16 items-center justify-between rounded-lg bg-white/70 px-4 backdrop-blur-sm"
+              className="sticky top-1 flex h-16 items-center justify-between rounded-lg bg-white/70 dark:bg-slate-800/80 px-4 backdrop-blur-sm"
             >
               {/* rightside */}
               <div>
@@ -137,10 +137,10 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
                 {/* notifs */}
                 <div className="flex gap-x-4">
                   <button className='bg-background p-1 rounded-2xl'>
-                    <Icons.MessageCircleMore className='size-10' />
+                    <Icons.MessageCircleMore className='size-9' />
                   </button>
                   <button className='bg-background p-1 rounded-2xl'>
-                    <Icons.Bell className='size-10'/>
+                    <Icons.Bell className='size-9'/>
                   </button>
                 </div>
                 {/* avatar */}
@@ -170,20 +170,18 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
             </div>
             <main className="rounded-lg bg-white p-6">
               {/* {children} */}
-
-              {/* <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-4">
                 {Object.entries(Icons).map(([iconName, IconComponent]) => (
                   <span
                     key={iconName}
                     className="flex items-center gap-2 text-black"
                   >
                      <IconComponent className='hover:bg-yellow-300' /> 
-                    <IconComponent />
                     {iconName}
                   </span>
                 ))}
-              </div> */}
-              <Icons.SquareCheckBig/>
+              </div> 
+              {/* <Icons.SquareCheckBig/> */}
             </main>
           </div>
         </div>

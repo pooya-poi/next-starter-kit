@@ -4,6 +4,7 @@ import { Fullscreen, Minimize } from "lucide-react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { ExpandIcon } from "./animated-icon/expand";
 
 /**
  * Define the styles and variants for the toggle screen button using `class-variance-authority`.
@@ -91,12 +92,14 @@ const ToggleScreen = ({
           aria-hidden="true"
         />
       ) : (
-        <Fullscreen
-          size={16}
-          strokeWidth={2}
-          className="text-black dark:text-white dark:group-hover:text-slate-900"
-          aria-hidden="true"
-        />
+        
+        <ExpandIcon className="text-black dark:text-white dark:group-hover:text-slate-900"/>
+        // <Fullscreen
+        //   size={16}
+        //   strokeWidth={2}
+        //   className="text-black dark:text-white dark:group-hover:text-slate-900"
+        //   aria-hidden="true"
+        // />
       )}
     </Toggle>
   );

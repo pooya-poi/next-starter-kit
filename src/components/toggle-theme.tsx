@@ -70,7 +70,7 @@ const ToggleTheme = ({
         aria-hidden="true"
         className="group-data-[state=on]:text-white-900/80 shrink-0 scale-0 opacity-0 transition-all group-hover:text-slate-900 group-data-[state=on]:scale-100 group-data-[state=on]:opacity-100"
       />
-      <SunIcon className="absolute shrink-0 scale-100 opacity-100 drop-shadow-lg transition-all group-hover:text-slate-900 group-data-[state=on]:scale-0 group-data-[state=on]:opacity-0 dark:text-white group-hover:dark:text-slate-900" />
+      <SunIcon className="size-10 absolute shrink-0 scale-100 opacity-100 drop-shadow-lg transition-all group-hover:text-slate-900 group-data-[state=on]:scale-0 group-data-[state=on]:opacity-0 dark:text-white group-hover:dark:text-slate-900" />
     </Toggle>
   );
 };
