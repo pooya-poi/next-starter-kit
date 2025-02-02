@@ -117,9 +117,9 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
                 </div>
               </div>
               {/* leftside */}
-              <div className="flex items-center">
+              <div className="flex items-center gap-x-10">
                 {/* toggles */}
-                <div className="flex">
+                <div className="flex gap-x-4 flex-row-reverse">
                   <ToggleTheme
                     iconSize={10}
                     className="md:flex"
@@ -135,9 +135,13 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
                   />
                 </div>
                 {/* notifs */}
-                <div className="flex">
-                  <Bell />
-                  <MessageSquareMore />
+                <div className="flex gap-x-4">
+                  <button className='bg-background p-1 rounded-2xl'>
+                    <Icons.MessageCircleMore className='size-10' />
+                  </button>
+                  <button className='bg-background p-1 rounded-2xl'>
+                    <Icons.Bell className='size-10'/>
+                  </button>
                 </div>
                 {/* avatar */}
                 <Avatar>
