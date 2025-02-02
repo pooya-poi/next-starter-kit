@@ -34,17 +34,37 @@ const svgVariants = {
     transition:{duration:1}
   }
 };
-const pathVariants = {
+const checkVariant = {
   hidden:{
-    opacity:10,
+    opacity:0,
     pathLength:0
   },
   visible:{
     opacity:1,
     pathLength:1,
     transition:{
-      duration:2,
+      duration:1.2,
       ease:"easeInOut"
+    }
+  }
+};
+
+const squrePath = {
+  hidden:{
+    opacity:.2,
+    pathLength:1,
+    rotate:0
+  },
+  visible:{
+    opacity:1,
+    pathLength:1,
+    rotate:360,
+    transition:{
+   
+    repeat: Infinity,
+    repeatType: "mirror",
+    duration: 2
+  
     }
   }
 };
@@ -57,8 +77,6 @@ const SquareCheckBigIcon = ({ className }: { className?: string }) => {
       className={`flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200 ${className}`}
         onMouseEnter={() => controls.start('visible')}
         onMouseLeave={() => controls.start('hidden')}
-      // onMouseEnter={() => console.log('icon is logging')}
-      // onMouseLeave={() => console.log('icon is logging')}
     >
      
       <m.svg
@@ -71,19 +89,20 @@ const SquareCheckBigIcon = ({ className }: { className?: string }) => {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        // class="lucide lucide-square-check-big"
         variants={svgVariants}
       >
         <m.path
           initial="hidden"
           animate={controls}
-          variants={pathVariants}
+          // animate="visible"
+          variants={squrePath}
           d="M21 10.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.5"
         />
         <m.path
           initial="hidden"
           animate={controls}
-          variants={pathVariants}
+          // animate="visible"
+          variants={checkVariant}
           d="m9 11 3 3L22 4"
         />
       </m.svg>
