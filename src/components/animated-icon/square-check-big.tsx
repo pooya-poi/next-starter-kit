@@ -111,3 +111,5 @@ const SquareCheckBigIcon = ({ className }: { className?: string }) => {
 };
 
 export { SquareCheckBigIcon };
+
+//TODO: fix the animation

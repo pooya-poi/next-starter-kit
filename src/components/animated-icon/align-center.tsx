@@ -11,7 +11,7 @@ const AlignCenterIcon = ({className}:{className?:string}) => {
 
   return (
     <div
-    className="cursor-pointer select-none p-2  rounded-md transition-colors duration-200 flex items-center justify-center"
+    className={`cursor-pointer select-none p-2  rounded-md transition-colors duration-200 flex items-center justify-center ${className}`}
     onMouseEnter={() => controls.start('animate')}
     onMouseLeave={() => controls.start('normal')}
   >
