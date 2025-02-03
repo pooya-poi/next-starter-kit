@@ -66,7 +66,7 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
           {/* Desktop sidebar */}
           <m.aside
             initial={{ width: '300px' }}
-            animate={{ width: isExpanded ? '300px' : '100px' }}
+            animate={{ width: isExpanded ? '300px' : '90px' }}
             transition={{ type: 'spring', stiffness: 300, damping: 25 }}
             className="sticky top-5 hidden h-[90vh] w-72 justify-between gap-y-20 rounded-lg bg-white px-5 py-5 md:flex md:flex-col"
           >
@@ -179,7 +179,7 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
                     key={iconName}
                     className="flex items-center gap-2 text-black"
                   >
-                    <IconComponent className="hover:bg-yellow-300" />
+                    <IconComponent className="bg-yellow-300" />
                     {iconName}
                   </span>
                 ))}
