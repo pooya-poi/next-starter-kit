@@ -18,30 +18,39 @@ import { Label } from '@/components/ui/label';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 
+import { usePathname } from 'next/navigation';
+
 const sidebarItems = [
-  { id: 1, name: 'داشبورد', icon: <Icons.Home /> },
+  {
+    id: 1,
+    name: 'داشبورد',
+    icon: <Icons.Home className="size-10" />,
+    path: '/dashboard',
+  },
   {
     id: 2,
-    name: 'محصولات',
-    icon: <Icons.Airplane className="hover:bg-yellow-400" />,
+    name: 'آیکون‌ها',
+    icon: <Icons.Airplane className="size-10" />,
+    path: '/dashboard/icons',
   },
   {
     id: 3,
     name: 'دسته‌بندی',
-    icon: <Icons.Cart className="hover:bg-red-400" />,
+    icon: <Icons.Cart className="size-10" />,
+    path: '',
   },
-  { id: 4, name: 'موجودی', icon: '' },
-  { id: 5, name: 'سفارشات', icon: '' },
-  { id: 6, name: 'خریدها', icon: '' },
-  { id: 7, name: 'ویژگی‌ها', icon: '' },
-  { id: 8, name: 'فاکتورها', icon: '' },
-  { id: 9, name: 'تنظیمات', icon: '' },
-  { id: 10, name: 'پروفایل', icon: '' },
-  { id: 11, name: 'نقش‌ها', icon: '' },
-  { id: 12, name: 'دسترسی‌ها', icon: '' },
-  { id: 13, name: 'مشتریان', icon: '' },
-  { id: 14, name: 'فروشندگان', icon: '' },
-  { id: 15, name: 'کوپن‌ها', icon: '' },
+  { id: 4, name: 'موجودی', icon: '', path: '' },
+  { id: 5, name: 'سفارشات', icon: '', path: '' },
+  { id: 6, name: 'خریدها', icon: '', path: '' },
+  { id: 7, name: 'ویژگی‌ها', icon: '', path: '' },
+  { id: 8, name: 'فاکتورها', icon: '', path: '' },
+  { id: 9, name: 'تنظیمات', icon: '', path: '' },
+  { id: 10, name: 'پروفایل', icon: '', path: '' },
+  { id: 11, name: 'نقش‌ها', icon: '', path: '' },
+  { id: 12, name: 'دسترسی‌ها', icon: '', path: '' },
+  { id: 13, name: 'مشتریان', icon: '', path: '' },
+  { id: 14, name: 'فروشندگان', icon: '', path: '' },
+  { id: 15, name: 'کوپن‌ها', icon: '', path: '' },
 ];
 
 const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
@@ -49,6 +58,8 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
   const { isOpen, openSidebar, closeSidebar } = useMobileSidebar();
   const [offset, setOffset] = useState(0);
   const id = useId();
+  const pathname = usePathname();
+  const currentRoute = pathname;
   useEffect(() => {
     window.onscroll = () => {
       setOffset(window.scrollY);
@@ -56,11 +67,26 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
   }, []);
   console.log('offset', offset);
 
+  const breadcrumbs: { [key: string]: string } = {
+    '/dashboard': 'داشبورد',
+    '/dashboard/icons': 'آیکون‌ها',
+    '/dashboard/category': 'دسته‌بندی',
+    '/dashboard/inventory': 'موجودی',
+    '/dashboard/orders': 'سفارشات',
+  };
+  const breadcrumbItems = pathname
+    .split('/')
+    .filter(Boolean)
+    .map((segment, index, array) => {
+      const path = `/${array.slice(0, index + 1).join('/')}`;
+      return { name: breadcrumbs[path as keyof typeof breadcrumbs] || segment, path };
+    });
+
   return (
     <>
       <div
         dir="rtl"
-        className="m-auto flex max-w-[1920px] flex-col gap-4 p-2 md:p-5"
+        className="m-auto flex max-w-[1920px] flex-col gap-4 p-2 md:p-5 container"
       >
         <div className="flex gap-4">
           {/* Desktop sidebar */}
@@ -68,17 +94,20 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
             initial={{ width: '300px' }}
             animate={{ width: isExpanded ? '300px' : '90px' }}
             transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-            className="sticky top-5 hidden h-[90vh] w-72 justify-between gap-y-20 rounded-lg bg-white px-5 py-5 md:flex md:flex-col"
+            className="sticky top-5 hidden h-[90vh] w-72 justify-between gap-y-20 rounded-lg bg-white dark:bg-slate-800 px-5 py-5 md:flex md:flex-col"
           >
             <div className="self-center">
-              <Image width={100} height={50} alt="logo" src={'next.svg'} />
+              <Image width={100} height={50} alt="logo" src='/next.svg' />
             </div>
-            <div className="flex h-3/4 flex-col gap-y-8 overflow-y-auto">
+            {/* <div className="flex h-3/4 flex-col gap-y-8 overflow-y-auto"> */}
+            {/* <div className="flex h-3/4 flex-col gap-y-8 scrollable-y-content"> */}
+            <div className="flex h-3/4 flex-col gap-y-8 overflow-y-auto pr-3 scrollbar-fix">
               {sidebarItems.map(item => (
                 <Link
-                  href="#"
+                  href={item.path}
                   key={item.id}
-                  className="flex items-center rounded-md bg-slate-800 px-2 text-white"
+                  // className={ `flex items-center rounded-[14]  pr-1 py-1 text-white bg-slate-800`}
+                  className={`flex items-center rounded-[14] ${!isExpanded ?' w-10':'' } ${currentRoute === item.path ? 'bg-slate-800 text-white dark:bg-white dark:text-slate-900' : 'hover:bg-slate-200'}`}
                 >
                   {item.icon}
                   {isExpanded && item.name}
@@ -91,7 +120,7 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
               animate={{ rotate: isExpanded ? '180deg' : '0deg' }}
               transition={{ type: 'Tween', stiffness: 300, damping: 50 }}
               onClick={() => setIsExpanded(prev => !prev)}
-              className="absolute -left-4 top-20 rounded-full border-4 border-background bg-white"
+              className="absolute -left-4 top-20 rounded-full border-4 border-background bg-white dark:bg-slate-800"
             >
               <ChevronLeftIcon size={28} />
             </m.button>
@@ -145,7 +174,7 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
                   </button>
                   <button className="relative rounded-2xl bg-background p-1">
                     <Icons.Bell className="size-9" />
-                    <Badge className="absolute -top-2 left-full flex  max-w-8 px-2 -translate-x-6 items-center rounded-full border-background">
+                    <Badge className="absolute -top-2 left-full flex max-w-8 -translate-x-6 items-center rounded-full border-background px-2">
                       55
                     </Badge>
                   </button>
@@ -168,23 +197,29 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
               />
             </header>
             {/* BreadCrumb */}
-            <div className="my-5 px-5 font-extrabold">
-              خانه/ داشبورد / ....../ بریدکرامب
-            </div>
-            <main className="rounded-lg bg-white p-6">
-              {/* {children} */}
-              <div className="grid grid-cols-3 gap-4">
-                {Object.entries(Icons).map(([iconName, IconComponent]) => (
-                  <span
-                    key={iconName}
-                    className="flex items-center gap-2 text-black"
-                  >
-                    <IconComponent className="bg-yellow-300" />
-                    {iconName}
-                  </span>
+            <nav className="my-5 px-5 font-extrabold">
+              <ul className="flex gap-2">
+                <li>
+                  <Link href="/dashboard" className="text-blue-600">
+                    خانه
+                  </Link>
+                </li>
+                {breadcrumbItems.map((item, index) => (
+                  <li key={item.path} className="flex items-center">
+                    <ChevronLeftIcon size={16} className="mx-2" />
+                    {index === breadcrumbItems.length - 1 ? (
+                      <span>{item.name}</span>
+                    ) : (
+                      <Link href={item.path} className="text-blue-600">
+                        {item.name}
+                      </Link>
+                    )}
+                  </li>
                 ))}
-              </div>
-              {/* <Icons.SquareCheckBig/> */}
+              </ul>
+            </nav>
+            <main className="rounded-lg bg-white dark:bg-slate-800 p-6">
+              {children}
             </main>
           </div>
         </div>
