@@ -47,23 +47,23 @@ const triangleVariants: Variants = {
   },
 };
 
-const YoutubeIcon = () => {
+const YoutubeIcon = ({className}:{className?:string}) => {
   const pathControls = useAnimation();
   const triangleControls = useAnimation();
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = ({className}:{className?:string}) => {
     pathControls.start('animate');
     triangleControls.start('animate');
   };
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = ({className}:{className?:string}) => {
     pathControls.start('normal');
     triangleControls.start('normal');
   };
 
   return (
     <div
-      className="flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200 hover:bg-accent"
+      className={`flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200  ${className}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

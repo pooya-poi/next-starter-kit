@@ -4,12 +4,12 @@ import { AnimatePresence} from 'motion/react';
 import { Fragment, useState } from 'react';
 import * as m from 'motion/react-m';
 
-const VolumeIcon = () => {
+const VolumeIcon = ({className}:{className?:string}) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div
-      className="flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200 hover:bg-accent"
+      className={`flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200  ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

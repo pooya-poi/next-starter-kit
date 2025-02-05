@@ -21,7 +21,7 @@ const lineVariants: Variants = {
   }),
 };
 
-const BatteryFullIcon = () => {
+const BatteryFullIcon = ({className}:{className?:string}) => {
   const controls = useAnimation();
 
   const handleHoverStart = async () => {
@@ -29,13 +29,13 @@ const BatteryFullIcon = () => {
     controls.start('fadeIn');
   };
 
-  const handleHoverEnd = () => {
+  const handleHoverEnd = ({className}:{className?:string}) => {
     controls.start('initial');
   };
 
   return (
     <div
-      className="flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200 hover:bg-accent"
+      className={`flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200  ${className}`}
       onMouseEnter={handleHoverStart}
       onMouseLeave={handleHoverEnd}
     >

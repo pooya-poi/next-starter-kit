@@ -19,11 +19,11 @@ export default {
 	},
 	theme: {
 		extend: {
-			fontFamily: {
-				iransans: [
-					'var(--font-iransansx)'
-				]
-			},
+			// fontFamily: {
+			// 	iransans: [
+			// 		'var(--font-iransansx)'
+			// 	]
+			// },
 			colors: {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',

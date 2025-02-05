@@ -15,12 +15,12 @@ const lineVariants: Variants = {
   },
 };
 
-const TerminalIcon = () => {
+const TerminalIcon = ({className}:{className?:string}) => {
   const controls = useAnimation();
 
   return (
     <div
-      className="flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200 hover:bg-accent"
+      className={`flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200  ${className}`}
       onMouseEnter={() => controls.start('hover')}
       onMouseLeave={() => controls.start('normal')}
     >

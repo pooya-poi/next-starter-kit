@@ -86,3 +86,31 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .scrollbar-fix {
+    @apply overflow-y-auto overflow-x-hidden text-right ;
+    direction: ltr;
+    
+  }
+
+  .scrollbar-fix > * {
+    direction: rtl;
+  }
+
+  .scrollbar-fix::-webkit-scrollbar {
+    @apply w-[3px] bg-transparent ;
+  }
+
+  .scrollbar-fix::-webkit-scrollbar-thumb {
+    @apply bg-transparent;
+  }
+
+  .scrollbar-fix:hover::-webkit-scrollbar {
+    @apply w-[3px] bg-gray-200;
+  }
+
+  .scrollbar-fix:hover::-webkit-scrollbar-thumb {
+    @apply rounded-md bg-gray-600;
+  }
+}

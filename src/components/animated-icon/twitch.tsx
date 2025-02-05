@@ -47,18 +47,18 @@ const lineVariants: Variants = {
   },
 };
 
-const TwitchIcon = () => {
+const TwitchIcon = ({className}:{className?:string}) => {
   const pathControls = useAnimation();
   const line1Controls = useAnimation();
   const line2Controls = useAnimation();
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = ({className}:{className?:string}) => {
     pathControls.start('animate');
     line1Controls.start('animate');
     line2Controls.start('animate');
   };
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = ({className}:{className?:string}) => {
     pathControls.start('normal');
     line1Controls.start('normal');
     line2Controls.start('normal');
@@ -66,7 +66,7 @@ const TwitchIcon = () => {
 
   return (
     <div
-      className="flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200 hover:bg-accent"
+      className={`flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200  ${className}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

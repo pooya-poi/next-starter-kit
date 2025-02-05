@@ -15,7 +15,7 @@ const keyboardPaths = [
   { id: 'key8', d: 'M8 12h.01' },
 ];
 
-const KeyboardIcon = () => {
+const KeyboardIcon = ({className}:{className?:string}) => {
   const [isHovered, setIsHovered] = useState(false);
   const controls = useAnimation();
 
@@ -43,7 +43,7 @@ const KeyboardIcon = () => {
 
   return (
     <m.div
-      className="flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200 hover:bg-accent"
+      className={`flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200  ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

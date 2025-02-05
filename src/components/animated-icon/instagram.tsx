@@ -69,18 +69,18 @@ const lineVariants: Variants = {
   },
 };
 
-const InstagramIcon = () => {
+const InstagramIcon = ({className}:{className?:string}) => {
   const rectControls = useAnimation();
   const pathControls = useAnimation();
   const lineControls = useAnimation();
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = ({className}:{className?:string}) => {
     rectControls.start('animate');
     pathControls.start('animate');
     lineControls.start('animate');
   };
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = ({className}:{className?:string}) => {
     rectControls.start('normal');
     pathControls.start('normal');
     lineControls.start('normal');
@@ -88,7 +88,7 @@ const InstagramIcon = () => {
 
   return (
     <div
-      className="flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200 hover:bg-accent"
+      className={`flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200  ${className}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
