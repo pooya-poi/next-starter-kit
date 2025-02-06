@@ -79,35 +79,38 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
     .filter(Boolean)
     .map((segment, index, array) => {
       const path = `/${array.slice(0, index + 1).join('/')}`;
-      return { name: breadcrumbs[path as keyof typeof breadcrumbs] || segment, path };
+      return {
+        name: breadcrumbs[path as keyof typeof breadcrumbs] || segment,
+        path,
+      };
     });
 
   return (
     <>
       <div
         dir="rtl"
-        className="m-auto flex max-w-[1920px] flex-col gap-4 p-2 md:p-5 container"
+        className="container m-auto flex max-w-[1920px] flex-col gap-3 p-2 md:p-5"
       >
-        <div className="flex gap-4">
+        <div className="flex gap-x-4">
           {/* Desktop sidebar */}
           <m.aside
             initial={{ width: '300px' }}
             animate={{ width: isExpanded ? '300px' : '90px' }}
             transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-            className="sticky top-5 hidden h-[90vh] w-72 justify-between gap-y-20 rounded-lg bg-white dark:bg-slate-800 px-5 py-5 md:flex md:flex-col"
+            className="sticky top-5 hidden h-[95vh] w-72 justify-between gap-y-20 rounded-lg bg-white px-5 py-5 dark:bg-slate-800 md:flex md:flex-col"
           >
             <div className="self-center">
-              <Image width={100} height={50} alt="logo" src='/next.svg' />
+              <Image width={100} height={50} alt="logo" src="/next.svg" />
             </div>
             {/* <div className="flex h-3/4 flex-col gap-y-8 overflow-y-auto"> */}
             {/* <div className="flex h-3/4 flex-col gap-y-8 scrollable-y-content"> */}
-            <div className="flex h-3/4 flex-col gap-y-8 overflow-y-auto pr-3 scrollbar-fix">
+            <div className="scrollbar-fix flex h-3/4 flex-col gap-y-8 overflow-y-auto pr-3">
               {sidebarItems.map(item => (
                 <Link
                   href={item.path}
                   key={item.id}
                   // className={ `flex items-center rounded-[14]  pr-1 py-1 text-white bg-slate-800`}
-                  className={`flex items-center rounded-[14] ${!isExpanded ?' w-10':'' } ${currentRoute === item.path ? 'bg-slate-800 text-white dark:bg-white dark:text-slate-900' : 'hover:bg-slate-200'}`}
+                  className={`flex items-center rounded-lg ${!isExpanded ? 'w-10' : ''} ${currentRoute === item.path ? 'bg-slate-800 text-white dark:bg-white dark:text-slate-900' : 'hover:bg-slate-200'}`}
                 >
                   {item.icon}
                   {isExpanded && item.name}
@@ -122,17 +125,17 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
               onClick={() => setIsExpanded(prev => !prev)}
               className="absolute -left-4 top-20 rounded-full border-4 border-background bg-white dark:bg-slate-800"
             >
-              <ChevronLeftIcon size={28} />
+              <ChevronLeftIcon size={20} />
             </m.button>
           </m.aside>
 
           {/* Mobile Sidebar */}
           <MobileSidebar isOpen={isOpen} closeSidebar={closeSidebar} />
 
-          <div className="flex w-full flex-col">
+          <div className="flex w-full flex-col gap-y-3">
             <header
               onScroll={() => console.log('header is scrolling')}
-              className="sticky top-1 flex h-16 items-center justify-between rounded-lg bg-white/70 px-4 backdrop-blur-sm dark:bg-slate-800/80"
+              className={` ${offset > 120 ? 'sticky top-5 shadow-2xl transition-all ease-in-out' : ''} flex h-16 items-center justify-between rounded-lg bg-white/70 px-4 backdrop-blur-sm dark:bg-slate-800/80`}
             >
               {/* rightside */}
               <div>
@@ -169,11 +172,11 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
                 </div>
                 {/* notifs */}
                 <div className="flex gap-x-4">
-                  <button className="rounded-2xl bg-background p-1">
-                    <Icons.MessageCircleMore className="size-9" />
+                  <button>
+                    <Icons.MessageCircleMore className="size-12 rounded-2xl bg-background p-2" />
                   </button>
-                  <button className="relative rounded-2xl bg-background p-1">
-                    <Icons.Bell className="size-9" />
+                  <button className="relative">
+                    <Icons.Bell className="size-12 rounded-2xl bg-background p-2" />
                     <Badge className="absolute -top-2 left-full flex max-w-8 -translate-x-6 items-center rounded-full border-background px-2">
                       55
                     </Badge>
@@ -197,7 +200,7 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
               />
             </header>
             {/* BreadCrumb */}
-            <nav className="my-5 px-5 font-extrabold">
+            <nav className="px-5 font-extrabold">
               <ul className="flex gap-2">
                 <li>
                   <Link href="/dashboard" className="text-blue-600">
@@ -218,9 +221,26 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
                 ))}
               </ul>
             </nav>
-            <main className="rounded-lg bg-white dark:bg-slate-800 p-6">
+            <main className="rounded-lg bg-white p-6 dark:bg-slate-800">
               {children}
             </main>
+            <footer className="flex justify-between rounded-lg bg-white px-5 py-2 text-xs font-light text-gray-500 dark:bg-slate-800">
+              <p>حقوق این سایت متعلق به شرکت فلان می‌باشد.</p>
+              <span className="flex flex-row-reverse items-center gap-x-4">
+                <Link href="/instagram" className="">
+                  <Icons.Instagram className="!p-0 text-gray-300 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-300" />
+                </Link>
+                <Link href="/instagram" className="">
+                  <Icons.Facebook className="!p-0 text-gray-300 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-300" />
+                </Link>
+                <Link href="/instagram" className="">
+                  <Icons.Instagram className="!p-0 text-gray-300 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-300" />
+                </Link>
+                <Link href="/instagram" className="">
+                  <Icons.Telegram className="!p-0 text-gray-300 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-300" />
+                </Link>
+              </span>
+            </footer>
           </div>
         </div>
       </div>
