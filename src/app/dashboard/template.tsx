@@ -60,6 +60,9 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
   const id = useId();
   const pathname = usePathname();
   const currentRoute = pathname;
+ const currentYear = new Date().toLocaleDateString('fa-IR', { year: 'numeric'});
+ 
+
   useEffect(() => {
     window.onscroll = () => {
       setOffset(window.scrollY);
@@ -225,7 +228,7 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
               {children}
             </main>
             <footer className="flex justify-between items-center rounded-lg bg-white px-5 py-2 text-xs font-light text-gray-500 dark:bg-slate-800">
-              <p>حقوق این سایت متعلق به شرکت فلان می‌باشد.</p>
+              <p>حقوق این سایت متعلق به شرکت فلان می‌باشد &copy;  {currentYear}</p>
               <span className="flex flex-row-reverse items-center gap-x-4">
                 <Link href="/instagram" className="">
                   <Icons.Instagram className="size-5 p-0 text-gray-300 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-300" />
