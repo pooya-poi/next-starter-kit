@@ -224,20 +224,20 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
             <main className="rounded-lg bg-white p-6 dark:bg-slate-800">
               {children}
             </main>
-            <footer className="flex justify-between rounded-lg bg-white px-5 py-2 text-xs font-light text-gray-500 dark:bg-slate-800">
+            <footer className="flex justify-between items-center rounded-lg bg-white px-5 py-2 text-xs font-light text-gray-500 dark:bg-slate-800">
               <p>حقوق این سایت متعلق به شرکت فلان می‌باشد.</p>
               <span className="flex flex-row-reverse items-center gap-x-4">
                 <Link href="/instagram" className="">
-                  <Icons.Instagram className="!p-0 text-gray-300 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-300" />
+                  <Icons.Instagram className="size-5 p-0 text-gray-300 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-300" />
                 </Link>
                 <Link href="/instagram" className="">
-                  <Icons.Facebook className="!p-0 text-gray-300 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-300" />
+                  <Icons.Facebook className="size-5 p-0 text-gray-300 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-300" />
                 </Link>
                 <Link href="/instagram" className="">
-                  <Icons.Instagram className="!p-0 text-gray-300 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-300" />
+                  <Icons.Instagram className="size-5 p-0 text-gray-300 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-300" />
                 </Link>
                 <Link href="/instagram" className="">
-                  <Icons.Telegram className="!p-0 text-gray-300 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-300" />
+                  <Icons.Telegram className="size-5 p-0 text-gray-300 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-300" />
                 </Link>
               </span>
             </footer>
