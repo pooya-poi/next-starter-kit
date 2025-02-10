@@ -27,5 +27,6 @@ Fonts used in this project: `Vazirmatn` `Roboto`
 Todo:
 
 [ ] update Tailwind4
+[ ] husky config
 
 
