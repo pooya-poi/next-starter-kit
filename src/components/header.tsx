@@ -2,8 +2,8 @@ import { Badge, Search } from 'lucide-react';
 import { Input } from './ui/input';
 import ToggleTheme from './toggle-theme';
 import ToggleScreen from './toggle-screen';
-import ChatIconOutlined from './svg-icon/chat-icon-outlined';
-import BellIconOutlined from './svg-icon/bell-icon-outlined';
+import ChatIcon from './svg-icon/chat-icon';
+import BellIcon from './svg-icon/bell-icon';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import ToggleSidebar from './toggle-sidebar';
 import { useMobileSidebar } from '@/hooks/useMobileSidebar';
@@ -61,10 +61,10 @@ const Header: React.FC = () => {
           {/* notifs */}
           <div className="flex gap-x-4">
             <button className="rounded-2xl bg-background p-2">
-              <ChatIconOutlined className="size-8 p-1" />
+              <ChatIcon className="size-8 p-1" />
             </button>
             <button className="relative rounded-2xl bg-background p-2">
-              <BellIconOutlined className="size-8 p-1" />
+              <BellIcon variants='fill' className="size-8 p-1" />
               <Badge className="absolute -top-2 left-full flex max-w-8 -translate-x-6 items-center rounded-full border-background px-2">
                 55
               </Badge>
