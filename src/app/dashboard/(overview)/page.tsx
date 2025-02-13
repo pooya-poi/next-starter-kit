@@ -1,6 +1,12 @@
+import CartIcon from "@/components/svg-icon/cart-icon";
+
 const Page:React.FC = () => (
 
- <div>Page</div>
+ <div className="p-6">Page
+
+
+<CartIcon className="size-32" variants="fill"/>
+ </div>
 
 )
 
