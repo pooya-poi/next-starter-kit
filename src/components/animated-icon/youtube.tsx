@@ -63,7 +63,7 @@ const YoutubeIcon = ({className}:{className?:string}) => {
 
   return (
     <div
-      className={`flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors duration-200  ${className}`}
+      className={`flex cursor-pointer select-none items-center justify-center  transition-colors duration-200  ${className}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

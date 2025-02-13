@@ -21,7 +21,7 @@ const CartIcon = ({className}:{className?:string}) => {
 
   return (
     <div
-      className={`duration-20 flex cursor-pointer select-none items-center justify-center rounded-md p-2 transition-colors ${className}`}
+      className={`duration-20 flex cursor-pointer select-none items-center justify-center  transition-colors ${className}`}
       onMouseEnter={() => {
         controls.start('hover');
       }}
