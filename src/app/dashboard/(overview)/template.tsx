@@ -82,7 +82,7 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
             initial={{ width: '260px' }}
             animate={{ width: isExpanded ? '260px' : '90px' }}
             transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-            className="sticky top-5 hidden h-[95vh] w-72 justify-between gap-y-20 rounded-lg bg-white px-2 py-5 dark:bg-slate-800 md:flex md:flex-col"
+            className="sticky top-3 hidden h-[95vh] w-72 justify-between gap-y-20 rounded-lg bg-white px-2 py-5 dark:bg-slate-800 md:flex md:flex-col"
           >
             <div className="self-center">
               <Image width={100} height={50} alt="logo" src="/next.svg" />
@@ -94,7 +94,7 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
                 <Link
                   href={item.path}
                   key={item.id}
-                  className={`flex items-center ${!isExpanded ? 'size-12 justify-center rounded-xl p-2' : 'rounded-xl px-4 py-2'} ${currentRoute === item.path ? 'bg-slate-800 text-white dark:bg-white dark:text-slate-900' : 'hover:bg-slate-200'}`}
+                  className={`flex items-center transition-colors ${!isExpanded ? 'size-12 justify-center rounded-xl p-2' : 'rounded-xl px-4 py-2'} ${currentRoute === item.path ? 'bg-slate-800 text-white dark:bg-white dark:text-slate-900' : 'hover:bg-slate-200 dark:hover:bg-slate-600'}`}
                 >
                   {item.icon}
                   {isExpanded && item.name}
