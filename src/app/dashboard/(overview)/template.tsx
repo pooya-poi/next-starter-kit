@@ -74,7 +74,7 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
     <>
       <div
         dir="rtl"
-        className="container m-auto flex max-w-[1920px] flex-col gap-3 p-2 md:p-5"
+        className="container m-auto flex max-w-[1920px] flex-col gap-3 p-1 md:p-3"
       >
         <div className="flex gap-x-4">
           {/* Desktop sidebar */}
@@ -82,7 +82,7 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
             initial={{ width: '260px' }}
             animate={{ width: isExpanded ? '260px' : '90px' }}
             transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-            className="sticky top-5 hidden h-[95vh] w-72 justify-between gap-y-20 rounded-lg bg-white px-2 py-5 dark:bg-slate-800 md:flex md:flex-col"
+            className="sticky top-3 hidden h-[95vh] w-72 justify-between gap-y-20 rounded-lg bg-white px-2 py-5 dark:bg-slate-800 md:flex md:flex-col"
           >
             <div className="self-center">
               <Image width={100} height={50} alt="logo" src="/next.svg" />
@@ -94,7 +94,7 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
                 <Link
                   href={item.path}
                   key={item.id}
-                  className={`flex items-center ${!isExpanded ? 'size-12 justify-center rounded-xl p-2' : 'rounded-xl px-4 py-2'} ${currentRoute === item.path ? 'bg-slate-800 text-white dark:bg-white dark:text-slate-900' : 'hover:bg-slate-200'}`}
+                  className={`flex items-center transition-colors ${!isExpanded ? 'size-12 justify-center rounded-xl p-2' : 'rounded-xl px-4 py-2'} ${currentRoute === item.path ? 'bg-slate-800 text-white dark:bg-white dark:text-slate-900' : 'hover:bg-slate-200 dark:hover:bg-slate-600'}`}
                 >
                   {item.icon}
                   {isExpanded && item.name}
@@ -124,20 +124,26 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
           <div className="flex w-full flex-col gap-y-3">
             <Header />
             {/* BreadCrumb */}
-            <nav className="px-5 font-extrabold">
-              <ul className="flex gap-2 text-xs">
+            <nav className="px-5 font-normal">
+              <ul className="flex gap-1 text-xs">
                 <li>
-                  <Link href="/dashboard" className="text-blue-600">
+                  <Link
+                    href="/dashboard"
+                    className="text-blue-500 hover:underline dark:text-blue-300"
+                  >
                     خانه
                   </Link>
                 </li>
                 {breadcrumbItems.map((item, index) => (
                   <li key={item.path} className="flex items-center">
-                    <ChevronLeftIcon size={16} className="mx-1" />
+                    <ChevronLeftIcon size={12} className="mx-1" />
                     {index === breadcrumbItems.length - 1 ? (
                       <span>{item.name}</span>
                     ) : (
-                      <Link href={item.path} className="text-blue-600">
+                      <Link
+                        href={item.path}
+                        className="text-blue-500 hover:underline dark:text-blue-300"
+                      >
                         {item.name}
                       </Link>
                     )}

@@ -2,14 +2,19 @@ import { Badge, Search } from 'lucide-react';
 import { Input } from './ui/input';
 import ToggleTheme from './toggle-theme';
 import ToggleScreen from './toggle-screen';
-import ChatIconOutlined from './svg-icon/chat-icon-outlined';
-import BellIconOutlined from './svg-icon/bell-icon-outlined';
+import ChatIcon from './svg-icon/chat-icon';
+import BellIcon from './svg-icon/bell-icon';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import ToggleSidebar from './toggle-sidebar';
 import { useMobileSidebar } from '@/hooks/useMobileSidebar';
 import { useEffect, useId, useState } from 'react';
 import * as m from 'motion/react-m';
 import MobileSidebar from './MobileSidebar';
+import Notification from './notification';
+import Message from './message';
+import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
+import { Button } from './ui/button';
+import Link from 'next/link';
 
 const Header: React.FC = () => {
   const { isOpen, openSidebar, closeSidebar } = useMobileSidebar();
@@ -60,24 +65,64 @@ const Header: React.FC = () => {
           </div>
           {/* notifs */}
           <div className="flex gap-x-4">
-            <button className="rounded-2xl bg-background p-2">
-              <ChatIconOutlined className="size-8 p-1" />
-            </button>
-            <button className="relative rounded-2xl bg-background p-2">
-              <BellIconOutlined className="size-8 p-1" />
-              <Badge className="absolute -top-2 left-full flex max-w-8 -translate-x-6 items-center rounded-full border-background px-2">
-                55
-              </Badge>
-            </button>
+            <Message />
+            <Notification />
           </div>
-          {/* avatar */}
-          <Avatar>
-            <AvatarImage
-              src="https://avatar.iran.liara.run/public/24"
-              alt="Kelly King"
-            />
-            <AvatarFallback>KK</AvatarFallback>
-          </Avatar>
+
+          <Popover>
+            <PopoverTrigger asChild>
+              <Avatar>
+                <AvatarImage
+                  src="https://avatar.iran.liara.run/public/24"
+                  alt="Kelly King"
+                />
+                <AvatarFallback>KK</AvatarFallback>
+              </Avatar>
+            </PopoverTrigger>
+            <PopoverContent className="mx-1 mt-3 w-44 p-1 md:mx-3">
+              <div
+                dir="auto"
+                className="flex items-baseline justify-between gap-4 px-3 py-2"
+              >
+                <div className="text-sm font-semibold">سلام پویا 👋</div>
+              </div>
+              <div
+                role="separator"
+                aria-orientation="horizontal"
+                className="-mx-1 my-1 h-px bg-border"
+              ></div>
+              <div className="flex flex-col items-end">
+                <Link
+                  className="w-full rounded-lg px-2 py-3 text-right text-slate-800 hover:bg-gray-200 dark:text-white dark:hover:bg-slate-800"
+                  href="#"
+                >
+                  پروفایل
+                </Link>
+                <Link
+                  className="w-full rounded-lg px-2 py-3 text-right text-slate-800 hover:bg-gray-200 dark:text-white dark:hover:bg-slate-800"
+                  href="#"
+                >
+                  پیام‌ها
+                </Link>
+                <Link
+                  className="w-full rounded-lg px-2 py-3 text-right text-slate-800 hover:bg-gray-200 dark:text-white dark:hover:bg-slate-800"
+                  href="#"
+                >
+                  راهنما
+                </Link>
+              </div>
+              <div
+                role="separator"
+                aria-orientation="horizontal"
+                className="-mx-1 my-1 h-px bg-border"
+              ></div>
+              <div className="flex justify-end">
+                <Button className="rounded-lg" variant={'destructive'}>
+                  خروج
+                </Button>
+              </div>
+            </PopoverContent>
+          </Popover>
         </div>
 
         <ToggleSidebar
