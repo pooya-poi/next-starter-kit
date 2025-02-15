@@ -7,10 +7,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { Bell } from 'lucide-react';
+
 import { useState } from 'react';
 import ChatIcon from './svg-icon/chat-icon';
-import Image from 'next/image';
 
 const initialNotifications = [
   {
@@ -55,6 +54,14 @@ const initialNotifications = [
   },
   {
     id: 6,
+    image: 'https://avatars.githubusercontent.com/u/50752011?s=40&v=4',
+    user: 'پویا',
+    action: 'این یک متن تستی برای کامپوننت پیام میباشد',
+    timestamp: '15 دقیقه قبل',
+    unread: true,
+  },
+  {
+    id: 7,
     image: 'https://avatars.githubusercontent.com/u/50752011?s=40&v=4',
     user: 'پویا',
     action: 'این یک متن تستی برای کامپوننت پیام میباشد',
@@ -111,13 +118,13 @@ export default function Message() {
           <ChatIcon variants="outline" className="size-8 p-1" />
           {unreadCount > 0 && (
             // <Badge className="absolute rounded-full -top-2 left-full min-w-5 -translate-x-1/2 px-1">
-            <Badge className="absolute -top-1 left-full flex size-5 -translate-x-1/2 items-center justify-center rounded-full px-1 text-center text-xs">
+            <Badge className="absolute -top-1 left-full flex size-1 -translate-x-1/2 items-center justify-center rounded-full p-2.5 text-center text-xs font-light">
               {unreadCount > 99 ? '99+' : unreadCount}
             </Badge>
           )}
         </button>
       </PopoverTrigger>
-      <PopoverContent className="w-80 p-1">
+      <PopoverContent className="mt-2 w-80 p-1">
         <div
           dir="auto"
           className="flex items-baseline justify-between gap-4 px-3 py-2"
@@ -137,42 +144,44 @@ export default function Message() {
           aria-orientation="horizontal"
           className="-mx-1 my-1 h-px bg-border"
         ></div>
-        {notifications.map(notification => (
-          <div
-            dir="auto"
-            key={notification.id}
-            className="rounded-md px-3 py-2 text-sm transition-colors hover:bg-accent"
-          >
-            <div dir="rtl" className="relative flex items-start gap-3 pe-3">
-              <Image
-                className="size-9 rounded-md border border-slate-300 dark:border-white/10"
-                src={notification.image}
-                width={32}
-                height={32}
-                alt={notification.user}
-              />
-              <div dir="rtl" className="flex-1 space-y-1">
-                <button
-                  className="text-right text-foreground/80 after:absolute after:inset-0"
-                  onClick={() => handleNotificationClick(notification.id)}
-                >
-                  <span className="font-medium text-right text-foreground hover:underline">
-                    {notification.user}:
-                  </span>
-                  {notification.action}.
-                </button>
-                <div className="text-xs text-muted-foreground">
-                  {notification.timestamp}
+        <div className="max-h-96 overflow-auto">
+          {notifications.map(notification => (
+            <div
+              dir="auto"
+              key={notification.id}
+              className="rounded-md px-3 py-2 text-sm transition-colors hover:bg-accent dark:hover:bg-slate-800"
+            >
+              <div dir="rtl" className="relative flex items-start gap-3 pe-3">
+                <img
+                  className="size-9 rounded-md border border-slate-300 dark:border-white/10"
+                  src={notification.image}
+                  width={32}
+                  height={32}
+                  alt={notification.user}
+                />
+                <div dir="rtl" className="flex-1 space-y-1">
+                  <button
+                    className="text-right text-foreground/80 after:absolute after:inset-0"
+                    onClick={() => handleNotificationClick(notification.id)}
+                  >
+                    <span className="text-right font-medium text-foreground hover:underline">
+                      {notification.user}:
+                    </span>
+                    {notification.action}.
+                  </button>
+                  <div className="text-xs text-muted-foreground">
+                    {notification.timestamp}
+                  </div>
                 </div>
+                {notification.unread && (
+                  <div className="absolute end-0 self-center">
+                    <Dot />
+                  </div>
+                )}
               </div>
-              {notification.unread && (
-                <div className="absolute end-0 self-center">
-                  <Dot />
-                </div>
-              )}
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </PopoverContent>
     </Popover>
   );

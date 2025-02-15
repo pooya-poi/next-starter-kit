@@ -21,42 +21,66 @@ const initialNotifications = [
   },
   {
     id: 2,
-    user: 'Emma Davis',
-    action: 'shared',
-    target: 'New component library',
-    timestamp: '45 minutes ago',
+    user: 'جان دوو',
+    action: 'درخواست بررسی',
+    target: 'شماره خطا #55 درخواست لاگین',
+    timestamp: '15 دقیقه‌پیش',
     unread: true,
   },
   {
     id: 3,
-    user: 'James Wilson',
-    action: 'assigned you to',
-    target: 'API integration task',
-    timestamp: '4 hours ago',
-    unread: false,
+    user: 'جان دوو',
+    action: 'درخواست بررسی',
+    target: 'شماره خطا #55 درخواست لاگین',
+    timestamp: '15 دقیقه‌پیش',
+    unread: true,
   },
   {
     id: 4,
-    user: 'Alex Morgan',
-    action: 'replied to your comment in',
-    target: 'Authentication flow',
-    timestamp: '12 hours ago',
-    unread: false,
+    user: 'جان دوو',
+    action: 'درخواست بررسی',
+    target: 'شماره خطا #55 درخواست لاگین',
+    timestamp: '15 دقیقه‌پیش',
+    unread: true,
   },
   {
     id: 5,
-    user: 'Sarah Chen',
-    action: 'commented on',
-    target: 'Dashboard redesign',
-    timestamp: '2 days ago',
+    user: 'جان دوو',
+    action: 'درخواست بررسی',
+    target: 'شماره خطا #55 درخواست لاگین',
+    timestamp: '15 دقیقه‌پیش',
     unread: true,
   },
   {
     id: 6,
-    user: 'Miky Derya',
-    action: 'mentioned you in',
-    target: 'Origin UI open graph image',
-    timestamp: '2 weeks ago',
+    user: 'جان دوو',
+    action: 'درخواست بررسی',
+    target: 'شماره خطا #55 درخواست لاگین',
+    timestamp: '15 دقیقه‌پیش',
+    unread: true,
+  },
+  {
+    id: 7,
+    user: 'جان دوو',
+    action: 'درخواست بررسی',
+    target: 'شماره خطا #55 درخواست لاگین برای کاربران جدید',
+    timestamp: '15 دقیقه‌پیش',
+    unread: true,
+  },
+  {
+    id: 8,
+    user: 'جان دوو',
+    action: 'درخواست بررسی',
+    target: 'شماره خطا #55 درخواست لاگین',
+    timestamp: '15 دقیقه‌پیش',
+    unread: true,
+  },
+  {
+    id: 9,
+    user: 'جان دوو',
+    action: 'درخواست بررسی',
+    target: 'شماره خطا #55 درخواست لاگین',
+    timestamp: '15 دقیقه‌پیش',
     unread: true,
   },
 ];
@@ -109,13 +133,13 @@ export default function Notification() {
           <BellIcon variants="outline" className="size-8 p-1" />
           {unreadCount > 0 && (
             // <Badge className="absolute rounded-full -top-2 left-full min-w-5 -translate-x-1/2 px-1">
-            <Badge className="absolute -top-1 left-full flex size-5 -translate-x-1/2 items-center justify-center rounded-full px-1 text-center text-xs">
+            <Badge className="absolute -top-1 left-full flex size-1 -translate-x-1/2 items-center justify-center rounded-full p-2.5 text-center text-xs font-light">
               {unreadCount > 99 ? '99+' : unreadCount}
             </Badge>
           )}
         </button>
       </PopoverTrigger>
-      <PopoverContent className="mx-5 mt-4 w-96 p-1">
+      <PopoverContent className="mx-5 mt-2 w-96 p-1">
         <div
           dir="auto"
           className="flex items-baseline justify-between gap-4 px-3 py-2"
@@ -135,40 +159,44 @@ export default function Notification() {
           aria-orientation="horizontal"
           className="-mx-1 my-1 h-px bg-border"
         ></div>
-        {notifications.map(notification => (
-          <div
-            dir="auto"
-            key={notification.id}
-            className="rounded-md px-3 py-2 text-sm transition-colors hover:bg-accent"
-          >
-            <div className="relative flex items-start pe-3">
-              <div className="flex-1 space-y-1">
-                <button
-                  className="text-left text-foreground/80 after:absolute after:inset-0"
-                  onClick={() => handleNotificationClick(notification.id)}
-                >
-                  <span className="font-medium text-foreground hover:underline">
-                    {notification.user}
-                  </span>{' '}
-                  {notification.action}{' '}
-                  <span className="font-medium text-foreground hover:underline">
-                    {notification.target}
-                  </span>
-                  .
-                </button>
-                <div className="text-xs text-muted-foreground">
-                  {notification.timestamp}
+        <div className="max-h-96 overflow-auto">
+          <div className="max-h-96 overflow-auto">
+            {notifications.map(notification => (
+              <div
+                dir="auto"
+                key={notification.id}
+                className="rounded-md px-3 py-2 text-sm transition-colors hover:bg-accent dark:hover:bg-slate-800"
+              >
+                <div className="relative flex items-start pe-3">
+                  <div className="flex-1 space-y-1">
+                    <button
+                      className="text-right text-foreground/80 after:absolute after:inset-0"
+                      onClick={() => handleNotificationClick(notification.id)}
+                    >
+                      <span className="font-medium text-foreground hover:underline">
+                        {notification.user}
+                      </span>{' '}
+                      {notification.action}{' '}
+                      <span className="font-medium text-foreground hover:underline">
+                        {notification.target}
+                      </span>
+                      .
+                    </button>
+                    <div className="text-xs text-muted-foreground">
+                      {notification.timestamp}
+                    </div>
+                  </div>
+                  {notification.unread && (
+                    <div className="absolute end-0 self-center">
+                      <span className="sr-only">Unread</span>
+                      <Dot />
+                    </div>
+                  )}
                 </div>
               </div>
-              {notification.unread && (
-                <div className="absolute end-0 self-center">
-                  <span className="sr-only">Unread</span>
-                  <Dot />
-                </div>
-              )}
-            </div>
+            ))}
           </div>
-        ))}
+        </div>
       </PopoverContent>
     </Popover>
   );
