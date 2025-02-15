@@ -11,6 +11,7 @@ import { useEffect, useId, useState } from 'react';
 import * as m from 'motion/react-m';
 import MobileSidebar from './MobileSidebar';
 import Notification from './notification';
+import Message from './message';
 
 const Header: React.FC = () => {
   const { isOpen, openSidebar, closeSidebar } = useMobileSidebar();
@@ -61,9 +62,7 @@ const Header: React.FC = () => {
           </div>
           {/* notifs */}
           <div className="flex gap-x-4">
-            <button className="rounded-2xl bg-background p-2">
-              <ChatIcon className="size-8 p-1" />
-            </button>
+        
             {/* <button className="relative rounded-2xl bg-background p-2">
               <BellIcon variants='fill' className="size-8 p-1" />
               <Badge className="absolute -top-2 left-full flex max-w-8 -translate-x-6 items-center rounded-full border-background px-2">
@@ -71,6 +70,7 @@ const Header: React.FC = () => {
               </Badge>
             </button> */}
 
+          <Message/>
           <Notification/>
 
 
