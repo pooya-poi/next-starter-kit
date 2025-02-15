@@ -124,20 +124,26 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
           <div className="flex w-full flex-col gap-y-3">
             <Header />
             {/* BreadCrumb */}
-            <nav className="px-5 font-extrabold">
-              <ul className="flex gap-2 text-xs">
+            <nav className="px-5 font-normal">
+              <ul className="flex gap-1 text-xs">
                 <li>
-                  <Link href="/dashboard" className="text-blue-600">
+                  <Link
+                    href="/dashboard"
+                    className="text-blue-500 hover:underline dark:text-blue-300"
+                  >
                     خانه
                   </Link>
                 </li>
                 {breadcrumbItems.map((item, index) => (
                   <li key={item.path} className="flex items-center">
-                    <ChevronLeftIcon size={16} className="mx-1" />
+                    <ChevronLeftIcon size={12} className="mx-1" />
                     {index === breadcrumbItems.length - 1 ? (
                       <span>{item.name}</span>
                     ) : (
-                      <Link href={item.path} className="text-blue-600">
+                      <Link
+                        href={item.path}
+                        className="text-blue-500 hover:underline dark:text-blue-300"
+                      >
                         {item.name}
                       </Link>
                     )}
