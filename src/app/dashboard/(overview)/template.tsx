@@ -74,7 +74,7 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
     <>
       <div
         dir="rtl"
-        className="container m-auto flex max-w-[1920px] flex-col gap-3 p-2 md:p-5"
+        className="container m-auto flex max-w-[1920px] flex-col gap-3 p-1 md:p-3"
       >
         <div className="flex gap-x-4">
           {/* Desktop sidebar */}
