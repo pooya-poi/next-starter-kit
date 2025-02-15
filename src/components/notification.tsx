@@ -108,7 +108,8 @@ export default function Notification() {
         <button className="relative rounded-2xl bg-background p-2">
           <BellIcon variants="outline" className="size-8 p-1" />
           {unreadCount > 0 && (
-            <Badge className="absolute -top-2 left-full min-w-5 -translate-x-1/2 px-1">
+            // <Badge className="absolute rounded-full -top-2 left-full min-w-5 -translate-x-1/2 px-1">
+            <Badge className="absolute -top-1 left-full flex size-5 -translate-x-1/2 items-center justify-center rounded-full px-1 text-center text-xs">
               {unreadCount > 99 ? '99+' : unreadCount}
             </Badge>
           )}
@@ -125,7 +126,7 @@ export default function Notification() {
               className="text-xs font-medium hover:underline"
               onClick={handleMarkAllAsRead}
             >
-              علامت گذاری همه به عنوان خوانده شده
+              خواندن همه
             </button>
           )}
         </div>
