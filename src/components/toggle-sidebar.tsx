@@ -5,7 +5,7 @@ import { cva, VariantProps } from 'class-variance-authority';
 import { Sidebar } from 'lucide-react';
 
 const toggleSidebarVariants = cva(
-  ' flex justify-center items-center  md:hidden bg-background dark:bg-forground group size-11 transition-all ',
+  ' flex justify-center items-center  lg:hidden bg-background dark:bg-forground group size-11 transition-all ',
   {
     variants: {
       variant: {
