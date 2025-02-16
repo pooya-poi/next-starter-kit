@@ -35,12 +35,12 @@ const Header: React.FC = () => {
         {/* rightside */}
         {/* <div> */}
           {/* search */}
-          <SearchInput />
+          <SearchInput className=' hidden lg:block'/>
         {/* </div> */}
         {/* leftside */}
         <div className="flex items-center gap-x-10">
           {/* toggles */}
-          <div className="hidden flex-row-reverse gap-x-4 md:flex">
+          <div className="flex flex-row-reverse gap-x-4 ">
             <ToggleTheme size={'lg'} variant={'default'} rounded={'2xl'} />
             <ToggleScreen
               className="md:flex"
