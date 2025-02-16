@@ -82,7 +82,7 @@ const DashboardTemplate: ReadonlyChildrenFC = ({ children }) => {
             initial={{ width: '260px' }}
             animate={{ width: isExpanded ? '260px' : '90px' }}
             transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-            className="sticky top-3 hidden h-[95vh] w-72 justify-between gap-y-20 rounded-lg bg-white px-2 py-5 dark:bg-slate-800 md:flex md:flex-col"
+            className="sticky top-3 hidden h-[95vh] w-72 justify-between gap-y-20 rounded-lg bg-white px-2 py-5 dark:bg-slate-800 lg:flex md:flex-col "
           >
             <div className="self-center">
               <Image width={100} height={50} alt="logo" src="/next.svg" />
