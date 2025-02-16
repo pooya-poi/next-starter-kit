@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 import { Button } from './ui/button';
+import LogoutIcon from './svg-icon/logout-icon';
 
 const AvatarPopover: React.FC = () => (
   <Popover>
@@ -52,8 +53,9 @@ const AvatarPopover: React.FC = () => (
         className="-mx-1 my-1 h-px bg-border"
       ></div>
       <div className="flex justify-end">
-        <Button className="rounded-lg" variant={'destructive'}>
+        <Button className="" rounded="lg" variant={'destructive'} size={'sm'}>
           خروج
+          <LogoutIcon variants="outline" className="size-6" />
         </Button>
       </div>
     </PopoverContent>
