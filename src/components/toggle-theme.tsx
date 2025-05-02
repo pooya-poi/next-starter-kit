@@ -1,72 +1,64 @@
 'use client';
-import { Toggle } from '@/components/ui/toggle';
+
+import { useEffect, useState } from 'react';
+import { MonitorIcon, MoonIcon, SunIcon } from 'lucide-react';
+
+import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import { useTheme } from 'next-themes';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '@/lib/utils';
-import SunIcon from './svg-icon/sun-icon';
-import MoonIcon from './svg-icon/moon-icon';
 
-/**
- * Variants for the ToggleTheme component styles using class-variance-authority.
- */
-const toggleThemeVariants = cva('group bg-background dark:bg-forground', {
-  variants: {
-    variant: {
-      default:
-        'border-none shadow-none hover:text-white hover:bg-gray-300 dark:data-[state=on]:bg-slate-900 hover:data-[state=on]:bg-gray-300 dark:hover:data-[state=on]:bg-slate-300 dark:group-hover:text-slate-900 data-[state=on]:bg-background',
-    },
-    rounded: {
-      sm: 'rounded-sm',
-      md: 'rounded-md',
-      lg: 'rounded-lg',
-      '2xl': 'rounded-2xl',
-      full: 'rounded-full',
-    },
-    size: {
-      default: 'size-9',
-      sm: 'size-9 ',
-      lg: 'size-12',
-      icon: 'size-9',
-    },
-  },
-});
+export default function ToggleTheme() {
+  const [mounted, setMounted] = useState(false);
 
-/**
- * Props for the ToggleTheme component.
- */
-interface ToggleThemeProps extends VariantProps<typeof toggleThemeVariants> {
-  className?: string;
-}
-
-/**
- * ToggleTheme component for switching between light and dark themes.
- *
- * @param {ToggleThemeProps} props - Props for customizing the appearance and behavior of the toggle.
- * @returns {JSX.Element} The ToggleTheme component.
- */
-const ToggleTheme = ({
-  className,
-  variant,
-  size,
-  rounded,
-}: ToggleThemeProps) => {
   const { theme, setTheme } = useTheme();
 
-  return (
-    <Toggle
-      type="button"
-      variant="outline"
-      className={cn(toggleThemeVariants({ variant, rounded, size, className }))}
-      onClick={() => setTheme(prev => (prev === 'dark' ? 'light' : 'dark'))}
-    >
-      <MoonIcon
-      variants='fill'
-        aria-hidden="true"
-        className="group-data-[state=on]:text-white-900/80 size-6 shrink-0 scale-0 opacity-0 transition-all group-hover:text-slate-900 group-data-[state=on]:scale-100 group-data-[state=on]:opacity-100"
-      />
-      <SunIcon variants='outline' className="absolute size-6 shrink-0 scale-100 opacity-100 drop-shadow-lg transition-all group-hover:text-slate-900 group-data-[state=on]:scale-0 group-data-[state=on]:opacity-0 dark:text-white group-hover:dark:text-slate-900" />
-    </Toggle>
-  );
-};
+  const systemPreference = theme;
+  const displayTheme = theme === 'system' ? systemPreference : theme;
 
-export default ToggleTheme;
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
+  return (
+    <div>
+      <DropdownMenu dir="rtl">
+        <DropdownMenuTrigger asChild>
+          <Button size="icon" variant="outline" className="rounded-xl">
+            {displayTheme === 'light' && (
+              <SunIcon size={16} aria-hidden="true" />
+            )}
+            {displayTheme === 'dark' && (
+              <MoonIcon size={16} aria-hidden="true" />
+            )}
+            {displayTheme === 'system' && (
+              <MonitorIcon size={16} aria-hidden="true" />
+            )}
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="min-w-32 mt-3">
+          <DropdownMenuItem onClick={() => setTheme('light')}>
+            <SunIcon size={16} className="opacity-60" aria-hidden="true" />
+            <span>تم روشن</span>
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setTheme('dark')}>
+            <MoonIcon size={16} className="opacity-60" aria-hidden="true" />
+            <span>تم تیره</span>
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setTheme('system')}>
+            <MonitorIcon size={16} className="opacity-60" aria-hidden="true" />
+            <span>تم سیستم</span>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
+  );
+}

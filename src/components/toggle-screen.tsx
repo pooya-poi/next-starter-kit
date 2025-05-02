@@ -5,6 +5,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
 import { ExpandIcon } from './animated-icon/expand';
+import { Button } from './ui/button';
 
 /**
  * Define the styles and variants for the toggle screen button using `class-variance-authority`.
@@ -77,10 +78,10 @@ const ToggleScreen = ({
   };
 
   return (
-    <Toggle
-      className={cn(
-        toggleScreenVariants({ variant, rounded, size, className })
-      )}
+    <Button
+      variant="outline"
+      size="icon"
+      className="rounded-xl"
       onClick={toggleFullScreen}
     >
       {isFullScreen ? (
@@ -93,7 +94,25 @@ const ToggleScreen = ({
       ) : (
         <ExpandIcon className="size-6 text-black dark:text-white dark:group-hover:text-slate-900" />
       )}
-    </Toggle>
+    </Button>
+
+    // <Toggle
+    //   className={cn(
+    //     toggleScreenVariants({ variant, rounded, size, className })
+    //   )}
+    //   onClick={toggleFullScreen}
+    // >
+    //   {isFullScreen ? (
+    //     <Minimize
+    //       size={16}
+    //       strokeWidth={2}
+    //       className="size-6 text-black group-hover:text-slate-900 dark:text-white dark:group-hover:text-slate-900"
+    //       aria-hidden="true"
+    //     />
+    //   ) : (
+    //     <ExpandIcon className="size-6 text-black dark:text-white dark:group-hover:text-slate-900" />
+    //   )}
+    // </Toggle>
   );
 };
 

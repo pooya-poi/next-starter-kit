@@ -112,19 +112,26 @@ export default function Message() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        {/* <Button size="icon" variant="outline" className="relative" aria-label="Open notifications"> */}
-
-        <button className="relative rounded-2xl bg-background p-2">
+        <Button
+          size="icon"
+          variant="outline"
+          className="relative rounded-xl"
+          aria-label="Open notifications"
+        >
           <ChatIcon variants="outline" className="size-8 p-1" />
           {unreadCount > 0 && (
-            // <Badge className="absolute rounded-full -top-2 left-full min-w-5 -translate-x-1/2 px-1">
-            <Badge className="absolute -top-1 left-full flex size-1 -translate-x-1/2 items-center justify-center rounded-full p-2.5 text-center text-xs font-light">
-              {unreadCount > 99 ? '99+' : unreadCount}
-            </Badge>
+            // <Badge className="absolute -top-0.5 left-full flex size-1 -translate-x-1/2 items-center justify-center rounded-full p-1 text-center text-xs font-light">
+            //   {/* {unreadCount > 99 ? '99+' : unreadCount} */}
+            // </Badge>
+
+            <span className="absolute -top-0.5 left-full flex size-2 -translate-x-1">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary/80 opacity-75"></span>
+            <span className="relative inline-flex size-2 rounded-full bg-primary"></span>
+          </span>
           )}
-        </button>
+        </Button>
       </PopoverTrigger>
-      <PopoverContent className="mt-2 w-80 p-1">
+      <PopoverContent className="mt-3 ml-3 w-80 p-1">
         <div
           dir="auto"
           className="flex items-baseline justify-between gap-4 px-3 py-2"
@@ -142,14 +149,14 @@ export default function Message() {
         <div
           role="separator"
           aria-orientation="horizontal"
-          className="-mx-1 my-1 h-px bg-border"
+          className="bg-border -mx-1 my-1 h-px"
         ></div>
         <div className="max-h-96 overflow-auto">
           {notifications.map(notification => (
             <div
               dir="auto"
               key={notification.id}
-              className="rounded-md px-3 py-2 text-sm transition-colors hover:bg-accent dark:hover:bg-slate-800"
+              className="hover:bg-accent rounded-md px-3 py-2 text-sm transition-colors dark:hover:bg-slate-800"
             >
               <div dir="rtl" className="relative flex items-start gap-3 pe-3">
                 <img
@@ -161,15 +168,15 @@ export default function Message() {
                 />
                 <div dir="rtl" className="flex-1 space-y-1">
                   <button
-                    className="text-right text-foreground/80 after:absolute after:inset-0"
+                    className="text-foreground/80 text-right after:absolute after:inset-0"
                     onClick={() => handleNotificationClick(notification.id)}
                   >
-                    <span className="text-right font-medium text-foreground hover:underline">
+                    <span className="text-foreground text-right font-medium hover:underline">
                       {notification.user}:
                     </span>
                     {notification.action}.
                   </button>
-                  <div className="text-xs text-muted-foreground">
+                  <div className="text-muted-foreground text-xs">
                     {notification.timestamp}
                   </div>
                 </div>
