@@ -1,8 +1,6 @@
 'use client';
-import { Toggle } from '@/components/ui/toggle';
 import { Minimize } from 'lucide-react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '@/lib/utils';
 import { useState } from 'react';
 import { ExpandIcon } from './animated-icon/expand';
 import { Button } from './ui/button';
@@ -49,12 +47,7 @@ interface ToggleScreenProps extends VariantProps<typeof toggleScreenVariants> {
  * @param {ToggleScreenProps} props - The props for the toggle screen button.
  * @returns {JSX.Element} The rendered toggle screen component.
  */
-const ToggleScreen = ({
-  className,
-  variant = 'default',
-  size = 'default',
-  rounded = 'sm',
-}: ToggleScreenProps) => {
+const ToggleScreen = ({ className }: ToggleScreenProps) => {
   const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
 
   /**
@@ -81,7 +74,7 @@ const ToggleScreen = ({
     <Button
       variant="outline"
       size="icon"
-      className="rounded-xl"
+      className={`rounded-xl ${className}`}
       onClick={toggleFullScreen}
     >
       {isFullScreen ? (
@@ -95,24 +88,6 @@ const ToggleScreen = ({
         <ExpandIcon className="size-6 text-black dark:text-white dark:group-hover:text-slate-900" />
       )}
     </Button>
-
-    // <Toggle
-    //   className={cn(
-    //     toggleScreenVariants({ variant, rounded, size, className })
-    //   )}
-    //   onClick={toggleFullScreen}
-    // >
-    //   {isFullScreen ? (
-    //     <Minimize
-    //       size={16}
-    //       strokeWidth={2}
-    //       className="size-6 text-black group-hover:text-slate-900 dark:text-white dark:group-hover:text-slate-900"
-    //       aria-hidden="true"
-    //     />
-    //   ) : (
-    //     <ExpandIcon className="size-6 text-black dark:text-white dark:group-hover:text-slate-900" />
-    //   )}
-    // </Toggle>
   );
 };
 
