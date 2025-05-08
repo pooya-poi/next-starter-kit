@@ -18,16 +18,16 @@ const MobileSidebar = ({ isOpen, closeSidebar }: MobileSidebarProps) => {
       {/* Backdrop */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-20 bg-black bg-opacity-40 backdrop-blur-sm md:hidden"
+          className="fixed inset-0 z-20 bg-black bg-opacity-40 backdrop-blur-sm lg:hidden"
           onClick={closeSidebar}
         />
       )}
 
       {/* Sidebar */}
       <aside
-        className={`fixed right-0 top-0 z-30 h-full w-80 rounded-bl-3xl rounded-tl-3xl bg-white dark:bg-slate-800 transition-transform duration-300 ease-in-out ${
+        className={`fixed right-0 top-0 z-30 h-full w-80 bg-white transition-transform duration-300 ease-in-out dark:bg-slate-800 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
-        } md:hidden`}
+        } lg:hidden`}
       >
         <button className="bg-gray-400 p-5" onClick={closeSidebar}>
           x

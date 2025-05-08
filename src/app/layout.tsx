@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Roboto, Vazirmatn } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
+import { ThemeProvider } from 'next-themes';
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -42,15 +43,21 @@ export default function RootLayout({
 }>) {
   return (
     <html
+      dir="rtl"
       lang="fa-IR"
       suppressHydrationWarning
-      // className={cn('light',`${geistSans.variable} ${geistMono.variable} antialiased`)}
       className={cn('light')}
     >
-      <body className={cn('bg-background', vazir.className, roboto.className)}>
-        {children}
+      <body className={cn('bg-muted', vazir.className, roboto.className)}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem={true}
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
-      {/* <body className={cn('bg-background', vazir.className)}>{children}</body> */}
     </html>
   );
 }
