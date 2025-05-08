@@ -12,7 +12,11 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useTheme } from 'next-themes';
 
-export default function ToggleTheme() {
+interface ToggleThemeProps {
+  className?: string;
+}
+
+export default function ToggleTheme({ className }: ToggleThemeProps) {
   const [mounted, setMounted] = useState(false);
 
   const { theme, setTheme } = useTheme();
@@ -31,7 +35,7 @@ export default function ToggleTheme() {
   return (
     <div>
       <DropdownMenu dir="rtl">
-        <DropdownMenuTrigger asChild>
+        <DropdownMenuTrigger className={className} asChild>
           <Button size="icon" variant="outline" className="rounded-xl">
             {displayTheme === 'light' && (
               <SunIcon size={16} aria-hidden="true" />
@@ -44,7 +48,7 @@ export default function ToggleTheme() {
             )}
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="min-w-32 mt-3">
+        <DropdownMenuContent className="mt-3 min-w-32">
           <DropdownMenuItem onClick={() => setTheme('light')}>
             <SunIcon size={16} className="opacity-60" aria-hidden="true" />
             <span>تم روشن</span>
