@@ -1,19 +1,22 @@
 'use client';
 
 import AvatarPopover from '@/components/avatar-popover';
-import Message from '@/components/message';
-import Notification from '@/components/notification';
+
+import NotificationAndMessages from '@/components/notificationAndMessages';
+import { SidebarTriggerMobile } from '@/components/sidebar';
 import ToggleScreen from '@/components/toggle-screen';
 import ToggleTheme from '@/components/toggle-theme';
 import { Input } from '@/components/ui/input';
+
 import { Magnifier } from '@pooya-poi/vectonents';
 
 const Header: React.FC = () => {
   return (
-    <header className="bg-background flex h-fit justify-between rounded-xl px-5 py-3 shadow">
+    <header className="bg-background flex h-fit justify-between gap-x-4 rounded-xl px-5 py-3 shadow">
+      <SidebarTriggerMobile variant={'outline'} className="" />
       <div className="relative">
         <Input
-          className="peer bg-transparent rounded-none border-0 border-b ps-9 shadow-none outline-0 focus-visible:ring-0"
+          className="peer w-full rounded-lg border-0 border-b bg-transparent px-2 ps-9 shadow-none outline-0 focus-visible:ring-0"
           placeholder="جستجو"
           type="search"
         />
@@ -21,15 +24,13 @@ const Header: React.FC = () => {
           <Magnifier variants="outlined" size={16} aria-hidden="true" />
         </div>
       </div>
-
       <div className="flex gap-x-5">
         <div className="flex gap-x-2">
-          <ToggleTheme />
-          <ToggleScreen />
+          <ToggleTheme className="hidden md:flex" />
+          <ToggleScreen className="hidden md:flex" />
         </div>
         <div className="flex gap-x-2">
-          <Message />
-          <Notification />
+          <NotificationAndMessages />
         </div>
         <AvatarPopover />
       </div>
