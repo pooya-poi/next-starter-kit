@@ -60,7 +60,7 @@ export default function Message({ initMessages }: MessagesProps) {
     <div>
       <div
         dir="auto"
-        className="flex justify-end items-baseline justify-between gap-4 px-3 py-2"
+        className="flex justify-end items-baseline gap-4 px-3 py-2"
       >
         {/* <div className="text-sm font-semibold">پیام‌ها</div> */}
         {unreadCount > 0 && (
