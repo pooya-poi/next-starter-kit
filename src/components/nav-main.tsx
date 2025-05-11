@@ -88,7 +88,7 @@ export function NavMain({ items }: { items: NavItem[] }) {
                   </SidebarMenuButton>
                 </CollapsibleTrigger>
 
-                <CollapsibleContent>
+                <CollapsibleContent className="CollapsibleContent">
                   <SidebarMenuSub>
                     {item.items?.map(subItem => {
                       const isActive = pathname === subItem.url;
