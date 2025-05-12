@@ -22,6 +22,7 @@ import {
   SidebarMenuSubItem,
 } from '@/components/sidebar';
 import DotIndicator from './dot-indicator';
+import React from 'react';
 
 // Variant for nav subitems
 const navItemVariants = cva('transition-colors', {
@@ -48,84 +49,156 @@ const chevronVariants = cva(
   'ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90'
 );
 
-type NavItem = {
-  title: string;
-  url: string;
-  icon?: LucideIcon;
-  isActive?: boolean;
-  items?: {
-    title: string;
-    url: string;
-  }[];
+type NavCategory = {
+  categoryLabel?: string;
+  subItems: SubItem[];
 };
 
-export function NavMain({ items }: { items: NavItem[] }) {
+type IconComponent = {
+  variants?: string | React.FC;
+};
+
+type SubItem = {
+  title: string;
+  url: string;
+  iconName?: React.FunctionComponent | React.FunctionComponent<IconComponent>;
+  iconVariants?: string;
+  activeIconVariant?: string;
+  notActiveIconVariant?: string;
+  isActive?: boolean;
+  items?: Items[];
+};
+type Items = {
+  title: string;
+  url: string;
+};
+
+interface NavMainDataProps {
+  navMainData: NavCategory[];
+}
+
+const renderIcon = (item: SubItem, isActive: boolean) => {
+  if (!item.iconName) return null;
+
+  // If iconName is a React component
+  if (typeof item.iconName !== 'string') {
+    const IconComponent = item.iconName;
+    return (
+      <IconComponent
+        variants={isActive ? item.activeIconVariant : item.notActiveIconVariant}
+      />
+    );
+  }
+  return null;
+};
+
+export function NavMain({ navMainData }: NavMainDataProps) {
   const pathname = usePathname();
 
   return (
-    <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
-      <SidebarMenu>
-        {items.map(item => {
-          const isSubItemActive = item.items?.some(sub => pathname === sub.url);
-
-          return (
-            <Collapsible
-              key={item.title}
-              asChild
-              defaultOpen={isSubItemActive || item.isActive}
-              className="group/collapsible"
-            >
-              <SidebarMenuItem>
-                <CollapsibleTrigger asChild>
-                  <SidebarMenuButton
-                    tooltip={item.title}
-                    className={navButtonVariants({ active: isSubItemActive })}
+    <>
+      {navMainData.map(category => (
+        <SidebarGroup key={category.categoryLabel}>
+          {category.categoryLabel && (
+            <SidebarGroupLabel className="text-foreground/50 text-xs font-light">
+              {category.categoryLabel}
+            </SidebarGroupLabel>
+          )}
+          <SidebarMenu>
+            {category.subItems.map(item => {
+              const isSubItemActive = item.items?.some(
+                sub => pathname === sub.url
+              );
+              const hasSubItems = item.items && item.items.length > 0;
+              if (hasSubItems) {
+                return (
+                  <Collapsible
+                    key={item.title}
+                    asChild
+                    defaultOpen={isSubItemActive || item.isActive}
+                    className="group/collapsible"
                   >
-                    {item.icon && <item.icon />}
-                    <span>{item.title}</span>
-                    <ChevronRight className={chevronVariants()} />
-                  </SidebarMenuButton>
-                </CollapsibleTrigger>
+                    <SidebarMenuItem>
+                      <CollapsibleTrigger asChild>
+                        <SidebarMenuButton
+                          tooltip={item.title}
+                          className={navButtonVariants({
+                            active: isSubItemActive,
+                          })}
+                        >
+                          {/* {item.icon && <item.icon  />} */}
 
-                <CollapsibleContent className="CollapsibleContent">
-                  <SidebarMenuSub>
-                    {item.items?.map(subItem => {
-                      const isActive = pathname === subItem.url;
+                          {renderIcon(item, isSubItemActive ?? false)}
 
-                      return (
-                        <SidebarMenuSubItem key={subItem.title}>
-                          <SidebarMenuSubButton
-                            asChild
-                            className="overflow-visible"
+                          <span
+                            className={navButtonVariants({
+                              active: isSubItemActive,
+                            })}
                           >
-                            {isActive ? (
-                              <span className="text-sidebar-accent-foreground relative">
-                                {subItem.title}
-                                <DotIndicator />
-                              </span>
-                            ) : (
-                              <Link href={subItem.url}>
-                                <span
-                                  className={navItemVariants({
-                                    active: isActive,
-                                  })}
+                            {item.title}
+                          </span>
+                          <ChevronRight className={chevronVariants()} />
+                        </SidebarMenuButton>
+                      </CollapsibleTrigger>
+
+                      <CollapsibleContent className="CollapsibleContent">
+                        <SidebarMenuSub>
+                          {item.items?.map(subItem => {
+                            const isActive = pathname === subItem.url;
+
+                            return (
+                              <SidebarMenuSubItem key={subItem.title}>
+                                <SidebarMenuSubButton
+                                  asChild
+                                  className="overflow-visible"
                                 >
-                                  {subItem.title}
-                                </span>
-                              </Link>
-                            )}
-                          </SidebarMenuSubButton>
-                        </SidebarMenuSubItem>
-                      );
-                    })}
-                  </SidebarMenuSub>
-                </CollapsibleContent>
-              </SidebarMenuItem>
-            </Collapsible>
-          );
-        })}
-      </SidebarMenu>
-    </SidebarGroup>
+                                  {isActive ? (
+                                    <span className="text-sidebar-accent-foreground relative">
+                                      {subItem.title}
+                                      <DotIndicator active/>
+                                    </span>
+                                  ) : (
+                                    <Link href={subItem.url}>
+                                      <span
+                                        className={navItemVariants({
+                                          active: isActive,
+                                        })}
+                                      >
+                                        <DotIndicator active={false}/>
+                                        {subItem.title}
+                                      </span>
+                                    </Link>
+                                  )}
+                                </SidebarMenuSubButton>
+                              </SidebarMenuSubItem>
+                            );
+                          })}
+                        </SidebarMenuSub>
+                      </CollapsibleContent>
+                    </SidebarMenuItem>
+                  </Collapsible>
+                );
+              }
+
+              // Simple link item when there are no sub-items
+              const isActive = pathname === item.url;
+              return (
+                <SidebarMenuItem key={item.title}>
+                  <Link href={item.url}>
+                    <SidebarMenuButton
+                      tooltip={item.title}
+                      className={navButtonVariants({ active: isActive })}
+                    >
+                      {renderIcon(item, isActive)}
+                      <span>{item.title}</span>
+                    </SidebarMenuButton>
+                  </Link>
+                </SidebarMenuItem>
+              );
+            })}
+          </SidebarMenu>
+        </SidebarGroup>
+      ))}
+    </>
   );
 }
