@@ -14,9 +14,10 @@ import { useTheme } from 'next-themes';
 
 interface ToggleThemeProps {
   className?: string;
+  contentClassName?: string;
 }
 
-export default function ToggleTheme({ className }: ToggleThemeProps) {
+export default function ToggleTheme({ className,contentClassName }: ToggleThemeProps) {
   const [mounted, setMounted] = useState(false);
 
   const { theme, setTheme } = useTheme();
@@ -48,7 +49,7 @@ export default function ToggleTheme({ className }: ToggleThemeProps) {
             )}
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="mt-3 min-w-32">
+        <DropdownMenuContent className={`mt-3 min-w-28 ${contentClassName}`}>
           <DropdownMenuItem onClick={() => setTheme('light')}>
             <SunIcon size={16} className="opacity-60" aria-hidden="true" />
             <span>تم روشن</span>
