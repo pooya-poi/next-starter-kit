@@ -52,15 +52,15 @@ export default function ToggleTheme({ className,contentClassName }: ToggleThemeP
         <DropdownMenuContent className={`mt-3 min-w-28 ${contentClassName}`}>
           <DropdownMenuItem onClick={() => setTheme('light')}>
             <SunIcon size={16} className="opacity-60" aria-hidden="true" />
-            <span>تم روشن</span>
+            <span>روز</span>
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setTheme('dark')}>
             <MoonIcon size={16} className="opacity-60" aria-hidden="true" />
-            <span>تم تیره</span>
+            <span>شب</span>
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setTheme('system')}>
             <MonitorIcon size={16} className="opacity-60" aria-hidden="true" />
-            <span>تم سیستم</span>
+            <span>سیستم</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
