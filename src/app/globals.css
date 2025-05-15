@@ -20,6 +20,8 @@
   --accent-foreground: hsl(224.59 64.5% 33.14%);
   --destructive: hsl(0 86.07% 60.59%);
   --destructive-foreground: hsl(0 0% 100%);
+  --success: hsl(142.1 76.2% 36.3%);
+  --success-foreground: hsl(0 0% 100%);
   --border: hsl(218.18 25.58% 91.57%);
   --input: hsl(218.18 25.58% 91.57%);
   --ring: hsl(217.14 91.3% 59.41%);
@@ -71,6 +73,8 @@
   --accent-foreground: hsl(218.18 13.25% 83.73%);
   --destructive: hsl(0 86.07% 60.59%);
   --destructive-foreground: hsl(220.71 48.28% 11.37%);
+  --success: hsl(142.1 76.2% 36.3%);
+  --success-foreground: hsl(220.71 48.28% 11.37%);
   --border: hsl(215.56 15.25% 34.71%);
   --input: hsl(215.56 15.25% 34.71%);
   --ring: hsl(234.5 90.91% 74.12%);
@@ -122,6 +126,8 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -249,4 +255,21 @@
   to {
     height: 0;
   }
+}
+
+
+
+.cardbg {
+  @apply bg-red-400 text-card-foreground;
+  position: relative;
+}
+.cardbg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-card);
+  opacity: 0.1;
 }
