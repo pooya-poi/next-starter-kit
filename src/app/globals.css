@@ -25,11 +25,24 @@
   --border: hsl(218.18 25.58% 91.57%);
   --input: hsl(218.18 25.58% 91.57%);
   --ring: hsl(217.14 91.3% 59.41%);
-  --chart-1: hsl(217.14 91.3% 59.41%);
+  /* --chart-1: hsl(217.14 91.3% 59.41%);
   --chart-2: hsl(221.38 86.38% 53.92%);
   --chart-3: hsl(224.44 76.52% 48.43%);
   --chart-4: hsl(225.83 71.29% 39.61%);
-  --chart-5: hsl(224.59 64.5% 33.14%);
+  --chart-5: hsl(224.59 64.5% 33.14%); */
+
+  /* --chart-1: hsl(220 70% 50%);
+  --chart-2: hsl(160 60% 45%);
+  --chart-3: hsl(30 80% 55%);
+  --chart-4: hsl(280 65% 60%);
+  --chart-5: hsl(340 75% 55%); */
+
+  --chart-1: hsl(221.2 83.2% 53.3%);
+  --chart-2: hsl(212 95% 68%);
+  --chart-3: hsl(216 92% 60%);
+  --chart-4: hsl(210 98% 78%);
+  --chart-5: hsl(212 97% 87%);
+
   --sidebar: hsl(0 0% 97.25%);
   --sidebar-foreground: hsl(0 0% 20%);
   --sidebar-primary: hsl(217.14 91.3% 59.41%);
@@ -78,11 +91,22 @@
   --border: hsl(215.56 15.25% 34.71%);
   --input: hsl(215.56 15.25% 34.71%);
   --ring: hsl(234.5 90.91% 74.12%);
-  --chart-1: hsl(234.5 90.91% 74.12%);
+  /* --chart-1: hsl(234.5 90.91% 74.12%);
   --chart-2: hsl(238.29 82.35% 66.67%);
   --chart-3: hsl(243.4 75.36% 58.63%);
   --chart-4: hsl(243.8 56.8% 50.98%);
-  --chart-5: hsl(243.59 54.93% 41.76%);
+  --chart-5: hsl(243.59 54.93% 41.76%); */
+  /* --chart-1: hsl(220 70% 50%);
+  --chart-2: hsl(160 60% 45%);
+  --chart-3: hsl(30 80% 55%);
+  --chart-4: hsl(280 65% 60%);
+  --chart-5: hsl(340 75% 55%); */
+  --chart-1: hsl(221.2 83.2% 53.3%);
+  --chart-2: hsl(212 95% 68%);
+  --chart-3: hsl(216 92% 60%);
+  --chart-4: hsl(210 98% 78%);
+  --chart-5: hsl(212 97% 87%);
+
   --sidebar: hsl(217.5 35.56% 17.65%);
   --sidebar-foreground: hsl(218.18 25.58% 91.57%);
   --sidebar-primary: hsl(234.5 90.91% 74.12%);
@@ -148,6 +172,7 @@
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
   --font-serif: var(--font-serif);
+  --font-vazir: var(--font-vazir);
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -257,10 +282,8 @@
   }
 }
 
-
-
 .cardbg {
-  @apply bg-red-400 text-card-foreground;
+  @apply text-card-foreground bg-red-400;
   position: relative;
 }
 .cardbg::before {
