@@ -297,7 +297,7 @@ export default function Page() {
       </div>
 
       {/* Recent Activity & Top Products */}
-      <div className="mb-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mb-6 grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         <Card className="bg-background/70 md:col-span-1 lg:col-span-2">
           <CardHeader>
             <CardTitle>فعالیت های اخیر</CardTitle>
@@ -339,7 +339,8 @@ export default function Page() {
                     <TableCell>
                       <Badge
                         className={tableBadge({
-                          status: (item.status === 'فعال') ? 'active' : 'inActive' ,
+                          status:
+                            item.status === 'فعال' ? 'active' : 'inActive',
                           // status: (item.status === 'فعال') ? 'active' : 'inActive',
                         })}
                       >
