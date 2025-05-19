@@ -23,6 +23,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { ChevronLeft, ListCaption, Menu } from '@pooya-poi/vectonents';
+import { useSwipeable } from 'react-swipeable';
 
 const SIDEBAR_COOKIE_NAME = 'sidebar_state';
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
@@ -125,8 +126,15 @@ function SidebarProvider({
     [state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar]
   );
 
+  const handlers = useSwipeable({
+    trackMouse: true,
+    onSwipedLeft: () => toggleSidebar(),
+  });
+
   return (
     <SidebarContext.Provider value={contextValue}>
+      {/* open sidebar with swipe */}
+      <div {...handlers} className="fixed z-30 h-[100vh] w-24 md:hidden"></div>
       <TooltipProvider delayDuration={0}>
         <div
           data-slot="sidebar-wrapper"
@@ -187,7 +195,7 @@ function Sidebar({
             data-sidebar="sidebar"
             data-slot="sidebar"
             data-mobile="true"
-            className="dark:bg-background/50 backdrop-blur-lg text-sidebar-foreground w-(--sidebar-width) p-0 [&>button]:hidden"
+            className="dark:bg-background/50 text-sidebar-foreground w-(--sidebar-width) p-0 backdrop-blur-lg [&>button]:hidden"
             style={
               {
                 '--sidebar-width': SIDEBAR_WIDTH_MOBILE,
@@ -308,9 +316,11 @@ function SidebarTriggerMobile({
       }}
       {...props}
     >
-      <ListCaption variants='outlined'
-      size={26}
-      className="text-foreground p-1 rotate-180 absolute top-1/2 left-1/2 -translate-x-2 -translate-y-2" />
+      <ListCaption
+        variants="outlined"
+        size={26}
+        className="text-foreground absolute top-1/2 left-1/2 -translate-x-2 -translate-y-2 rotate-180 p-1"
+      />
       {/* <Menu
         variants="filled-1"
         className="text-foreground/50 absolute top-1/2 left-1/2 -translate-x-2 -translate-y-2"
