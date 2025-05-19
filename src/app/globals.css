@@ -3,6 +3,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@font-face {
+  font-family: 'vazir-FD';
+  src: url('../../public/fonts/Vazir-FD-WOL.woff') format('woff');
+}
+
 :root {
   --background: hsl(0 0% 100%);
   --foreground: hsl(0 0% 20%);
@@ -54,6 +59,8 @@
   --font-sans: Inter, sans-serif;
   --font-serif: Source Serif 4, serif;
   --font-mono: JetBrains Mono, monospace;
+  --font-vazir: 'Vazirmatn', sans-serif;
+  --font-vazir-fd: 'vazir-FD', sans-serif;
   --radius: 0.5rem;
   --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
   --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
@@ -91,21 +98,21 @@
   --border: hsl(215.56 15.25% 34.71%);
   --input: hsl(215.56 15.25% 34.71%);
   --ring: hsl(234.5 90.91% 74.12%);
-  /* --chart-1: hsl(234.5 90.91% 74.12%);
+  --chart-1: hsl(234.5 90.91% 74.12%);
   --chart-2: hsl(238.29 82.35% 66.67%);
   --chart-3: hsl(243.4 75.36% 58.63%);
   --chart-4: hsl(243.8 56.8% 50.98%);
-  --chart-5: hsl(243.59 54.93% 41.76%); */
+  --chart-5: hsl(243.59 54.93% 41.76%);
   /* --chart-1: hsl(220 70% 50%);
   --chart-2: hsl(160 60% 45%);
   --chart-3: hsl(30 80% 55%);
   --chart-4: hsl(280 65% 60%);
   --chart-5: hsl(340 75% 55%); */
-  --chart-1: hsl(221.2 83.2% 53.3%);
+  /* --chart-1: hsl(221.2 83.2% 53.3%);
   --chart-2: hsl(212 95% 68%);
   --chart-3: hsl(216 92% 60%);
   --chart-4: hsl(210 98% 78%);
-  --chart-5: hsl(212 97% 87%);
+  --chart-5: hsl(212 97% 87%); */
 
   --sidebar: hsl(217.5 35.56% 17.65%);
   --sidebar-foreground: hsl(218.18 25.58% 91.57%);
@@ -118,6 +125,8 @@
   --font-sans: Inter, sans-serif;
   --font-serif: Merriweather, serif;
   --font-mono: JetBrains Mono, monospace;
+  --font-vazir: 'Vazirmatn', sans-serif;
+  --font-vazir-fd: 'vazir-FD', sans-serif;
   --radius: 0.5rem;
   --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
   --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
@@ -173,6 +182,7 @@
   --font-mono: var(--font-mono);
   --font-serif: var(--font-serif);
   --font-vazir: var(--font-vazir);
+  --font-vazir-fd: var(--font-vazir-fd);
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -295,4 +305,15 @@
   bottom: 0;
   background-color: var(--color-card);
   opacity: 0.1;
+}
+
+.apexcharts-tooltip {
+  @apply text-primary bg-primary;
+}
+.apexcharts-menu.apexcharts-menu-open {
+  @apply bg-card/50 rounded-md border opacity-10 shadow-sm backdrop-blur-xs;
+}
+
+.apexcharts-menu.apexcharts-menu-open .apexcharts-menu-item:hover {
+  @apply hover:bg-sidebar-accent;
 }
