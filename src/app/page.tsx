@@ -1,11 +1,17 @@
+import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
-const Page: React.FC = () => (
-  <div>
-    Home Page <br />
-    <Link href="/dashboard">dashboard</Link>
-  </div>
-);
+const Page = () => {
+  return (
+    <div className="text-accent-foreground flex flex-col items-center gap-y-10">
+      <h1>Home Page</h1>
+      <Button variant={'default'} className='text-accent-foreground '>
+      <Link href="/dashboard">dashboard</Link>
+      </Button>
+      
+    </div>
+  );
+};
 
 Page.displayName = 'pageApp';
 export default Page;
