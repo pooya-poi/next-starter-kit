@@ -88,7 +88,7 @@ const tableBadge = cva('', {
 
 export default function Page() {
   return (
-    <div className="flex flex-col p-4 md:p-6">
+    <div className="flex flex-col md:p-6">
       {/* Stats Cards */}
 
       <SectionCards />
