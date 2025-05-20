@@ -22,7 +22,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-import { ChevronLeft, Menu } from '@pooya-poi/vectonents';
+import { ChevronLeft, ListCaption, Menu } from '@pooya-poi/vectonents';
+import { useSwipeable } from 'react-swipeable';
 
 const SIDEBAR_COOKIE_NAME = 'sidebar_state';
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
@@ -125,8 +126,15 @@ function SidebarProvider({
     [state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar]
   );
 
+  const handlers = useSwipeable({
+    trackMouse: true,
+    onSwipedLeft: () => toggleSidebar(),
+  });
+
   return (
     <SidebarContext.Provider value={contextValue}>
+      {/* open sidebar with swipe */}
+      <div {...handlers} className="fixed z-30 h-[100vh] w-4.5 md:hidden"></div>
       <TooltipProvider delayDuration={0}>
         <div
           data-slot="sidebar-wrapper"
@@ -187,7 +195,7 @@ function Sidebar({
             data-sidebar="sidebar"
             data-slot="sidebar"
             data-mobile="true"
-            className="bg-sidebar text-sidebar-foreground w-(--sidebar-width) p-0 [&>button]:hidden"
+            className="dark:bg-background/50 text-sidebar-foreground w-(--sidebar-width) p-0 backdrop-blur-lg [&>button]:hidden"
             style={
               {
                 '--sidebar-width': SIDEBAR_WIDTH_MOBILE,
@@ -245,7 +253,7 @@ function Sidebar({
         <div
           data-sidebar="sidebar"
           data-slot="sidebar-inner"
-          className="bg-sidebar group-data-[variant=floating]:border-sidebar-border flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm"
+          className="bg-background/70 group-data-[variant=floating]:border-sidebar-border flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm"
         >
           {children}
         </div>
@@ -308,10 +316,15 @@ function SidebarTriggerMobile({
       }}
       {...props}
     >
-      <Menu
+      <ListCaption
+        variants="outlined"
+        size={26}
+        className="text-foreground absolute top-1/2 left-1/2 -translate-x-2 -translate-y-2 rotate-180 p-1"
+      />
+      {/* <Menu
         variants="filled-1"
         className="text-foreground/50 absolute top-1/2 left-1/2 -translate-x-2 -translate-y-2"
-      />
+      /> */}
 
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
