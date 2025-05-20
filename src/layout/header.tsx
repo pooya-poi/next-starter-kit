@@ -29,7 +29,7 @@ const Header: React.FC = () => {
     <motion.header
       variants={{
         hidden: { y: '-55px' },
-        visible: { y: -0 },
+        visible: { y: 0 },
       }}
       whileHover="visible"
       animate={hidden ? 'hidden' : 'visible'}
