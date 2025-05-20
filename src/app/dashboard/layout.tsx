@@ -22,7 +22,7 @@ export default async function AdminLayout({
         <div className="flex w-full flex-col gap-y-4 p-2">
           <Header />
           <BreadCrumb />
-          <main>{children}</main>
+          <main className='p-4'>{children}</main>
         </div>
         <Footer />
       </SidebarInset>
