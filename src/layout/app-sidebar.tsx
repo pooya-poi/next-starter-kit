@@ -30,6 +30,7 @@ import {
 import ToggleTheme from '@/components/toggle-theme';
 import ToggleScreen from '@/components/toggle-screen';
 import { data } from './sidebar-data';
+import { SidebarHeaderContent } from './sidebar-header-content';
 
 // This is sample data.
 
@@ -43,8 +44,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       className="sticky top-0"
     >
       <SidebarTrigger className="bg-background border-muted absolute top-16 -left-1.5 z-10 hidden border-4 shadow-none md:block" />
-      <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+      <SidebarHeader className="flex flex-row justify-center">
+        {/* <TeamSwitcher teams={data.teams} /> */}
+        <SidebarHeaderContent teams={data.teams} />
       </SidebarHeader>
       <SidebarContent className="mt-6">
         <NavMain navMainData={data.navMain} />
@@ -55,7 +57,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <ToggleTheme className="flex md:hidden" />
           <ToggleScreen className="flex md:hidden" />
         </div>
-        <NavUser user={data.user} />
+        {/* <NavUser user={data.user} /> */}
       </SidebarFooter>
       {/* <SidebarRail /> */}
     </Sidebar>

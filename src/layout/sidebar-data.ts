@@ -20,9 +20,9 @@ export const data = {
   },
   teams: [
     {
-      name: 'Acme Inc',
+      name: 'داشبورد مدیریت',
       logo: GalleryVerticalEnd,
-      plan: 'Enterprise',
+      plan: 'سوپر ادمین',
     },
     {
       name: 'Acme Corp.',
