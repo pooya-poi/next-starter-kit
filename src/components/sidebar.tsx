@@ -134,7 +134,7 @@ function SidebarProvider({
   return (
     <SidebarContext.Provider value={contextValue}>
       {/* open sidebar with swipe */}
-      <div {...handlers} className="fixed z-30 h-[100vh] w-24 md:hidden"></div>
+      <div {...handlers} className="fixed z-30 h-[100vh] w-4.5 md:hidden"></div>
       <TooltipProvider delayDuration={0}>
         <div
           data-slot="sidebar-wrapper"
