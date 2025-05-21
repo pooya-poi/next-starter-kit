@@ -94,7 +94,7 @@ const metricsData: MetricData[] = [
 ];
 
 const cardVariant = cva(
-  '@container/card py-2 dark:border shadow-none border bg-background/70 ',
+  '@container/card py-2 dark:border  border bg-background/70 ',
   {
     variants: {
       gradient: {
@@ -139,7 +139,7 @@ export function SectionCards() {
       {/* item 1 */}
 
       <div className="md:col-span-2 lg:col-span-1 lg:row-span-2 xl:col-span-2 xl:row-span-2">
-        <div className="bg-background/70 border flex h-full w-full flex-row items-center justify-between rounded-xl p-4">
+        <div className="shadow bg-background/70 border flex h-full w-full flex-row items-center justify-between rounded-xl p-4">
           <div className="flex flex-col items-start">
             <span className="text-foreground flex flex-col text-xl font-bold">
               <span>سلام پویا👋</span>
