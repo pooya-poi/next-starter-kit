@@ -55,14 +55,6 @@ export default function SignupForm() {
   const toggleVisibility = () => setIsVisible(prevState => !prevState);
 
   const checkStrength = (pass: string) => {
-    // const requirements = [
-    //   { regex: /.{8,}/, text: 'حداقل 8 کاراکتر' },
-    //   { regex: /[0-9]/, text: 'حداقل یک کاراکتر عددی' },
-    //   { regex: /[a-z]/, text: 'حداقل یک حرف بزرگ' },
-    //   { regex: /[A-Z]/, text: 'حداقل یک حرف کوچک' },
-    //   { regex: /^[A-Za-z0-9\s]+$/, text: 'حروف انگلیسی' },
-    //   { regex: /[!@#$%^&*(),.?":{}|<>[\]\\\/~`+=_-]/, text: 'علائم خاص' },
-    // ];
     const requirements = [
       { regex: /.{8,}/, text: 'حداقل ۸ کاراکتر' },
       { regex: /[0-9]/, text: 'حداقل یک رقم (۰–۹)' },
@@ -261,7 +253,8 @@ export default function SignupForm() {
                     id={`${id}-description`}
                     className="text-foreground mb-2 text-sm font-medium"
                   >
-                    {getStrengthText(strengthScore)}. باید شامل موارد زیر باشد:
+                    {/* {getStrengthText(strengthScore)}. */}
+                    رمز عبور قوی باید شامل موارد زیر باشد:
                   </p>
 
                   {/* Password requirements list */}
