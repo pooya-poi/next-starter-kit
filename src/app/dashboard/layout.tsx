@@ -6,6 +6,7 @@ import BreadCrumb from '@/layout/breadcrumb';
 
 import { SidebarInset, SidebarProvider } from '@/components/sidebar';
 import { cookies } from 'next/headers';
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 export default async function AdminLayout({
   children,
@@ -22,7 +23,10 @@ export default async function AdminLayout({
         <div className="flex w-full flex-col gap-y-4 p-2">
           <Header />
           <BreadCrumb />
+          <NuqsAdapter>
+
           <main className='p-4'>{children}</main>
+          </NuqsAdapter>
         </div>
         <Footer />
       </SidebarInset>
